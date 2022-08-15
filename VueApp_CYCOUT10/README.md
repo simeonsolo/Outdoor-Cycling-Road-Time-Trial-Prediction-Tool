@@ -1,4 +1,5 @@
 # Here's a template for VueJs setup, instructions for git should be ready by Sat
+## this is madness... CS50 ide, CS50 codespace, VS for mac and VSCode doesn't support GitHub enterprise accounts, why?!?!?
 
 # Vue 3 + Vite
 
