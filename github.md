@@ -23,7 +23,7 @@ documentation/GitHub-instructions
 # For Vue and Node.js setup in repo:
 1.	Install node.js at https://nodejs.org/en/download/
 2.	Run `npm install` to install all dependencies needed from node.js
-3.	Run `npm run start` to start the Vue test app or `npm run lint` for linting
+3.	Run `npm run dev` to start the Vue test app or `npm run lint` for linting
 
 Let me know if I missed anything :) 
 
