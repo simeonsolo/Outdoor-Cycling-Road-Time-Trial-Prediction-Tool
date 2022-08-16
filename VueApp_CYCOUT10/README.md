@@ -1,4 +1,5 @@
-1) `npm install`
+Instructions to boot
+1) `npm install`, prerequisite: install node.js
 2) `npm run start`
 
 # Vue 3 + Vite
