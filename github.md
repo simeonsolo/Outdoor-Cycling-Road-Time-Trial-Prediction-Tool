@@ -24,6 +24,7 @@ documentation/GitHub-instructions
 1.	Install node.js at https://nodejs.org/en/download/
 2.	Run `npm install` to install all dependencies needed from node.js
 3.	Run `npm run dev` to start the Vue test app or `npm run lint` for linting
+4.	Link to your web browser at your local hosting site
 
 Let me know if I missed anything :) 
 
