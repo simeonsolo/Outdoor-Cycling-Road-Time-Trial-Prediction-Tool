@@ -12,6 +12,9 @@ Some basic setup include:
 4) Run `npm run start` to start the Vue test app or `npm run lint` for linting
 Change
 
+<<<<<<< HEAD
+
+
+=======
 a1744755
 a1764162
-a17977945
