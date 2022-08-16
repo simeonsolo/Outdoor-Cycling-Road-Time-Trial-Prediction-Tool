@@ -10,6 +10,6 @@ Some basic setup include:
 3) Run `npm install` to install all dependencies needed from node.js
 4) Run `npm run start` to start the Vue test app or `npm run lint` for linting
 
-One last try....
+
 
 testing a1798385 - Michael
