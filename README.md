@@ -4,9 +4,9 @@
 This is a basic expressJS + VueJS + node.js application with some OAuth security measures in place, a better reference on the implementation of it can be found at https://auth0.com/blog/how-to-make-secure-http-requests-with-vue-and-express/
 
 ## File layout
-`client` folder = for front-end configurations in Vue
-`server` folder = for back-end configurations in Express
-`experimental` folder = for unused, experimenting codes
+- `client` folder = for front-end configurations in Vue
+- `server` folder = for back-end configurations in Express
+- `experimental` folder = for unused, experimenting codes
 
 ## Basic setup
 If this is your initial visit of the repository, please review the next section below, otherwise follow these instructions to compile the application: 
@@ -40,7 +40,7 @@ documentation/GitHub-instructions
 2)	Run `npm run dev` to start the Vue test app or `npm run lint` for linting
 3)	Link to your web browser at your local hosting site
 
-Let me know if I missed anything :) 
+Feel free to add if you think there's something missing 🙂
 
 ### Happy coding y'all…
 
