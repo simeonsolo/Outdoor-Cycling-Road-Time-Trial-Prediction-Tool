@@ -1,7 +1,9 @@
 # Front end - the client side of the application
 
 ## Used Technologies:
-Vue 3 + Vite + ESLint + Prettier
+Vue 3 JS
+Completed installation: Vite + ESLint + Prettier
+Incompleted: Auth0 linkage, mock dataset, Vitest/Jest
 
 ## Setup
 1. Run `npm install`
