@@ -1,0 +1,24 @@
+{
+  "name": "front-end",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "start": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "format": "prettier .  --write"
+  },
+  "dependencies": {
+    "vue": "^3.2.37"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^3.0.3",
+    "eslint": "8.22.0",
+    "eslint-config-prettier": "8.5.0",
+    "eslint-plugin-vue": "9.3.0",
+    "prettier": "2.7.1",
+    "vite": "^3.0.7",
+    "vite-plugin-eslint": "1.8.1"
+  }
+}
