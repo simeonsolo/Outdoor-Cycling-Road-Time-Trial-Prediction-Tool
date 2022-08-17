@@ -1,8 +1,9 @@
 # CYCOUT10
 
+## Overview
 This is a basic expressJS + VueJS + node.js application with some OAuth security measures in place, a better reference on the implementation of it can be found at https://auth0.com/blog/how-to-make-secure-http-requests-with-vue-and-express/
 
-### Overview
+## File layout
 `front-end` folder = for client-side configurations in Vue
 `back-end` folder = for server-side configurations in Express
 `experimental` folder = for unused, experimenting codes
