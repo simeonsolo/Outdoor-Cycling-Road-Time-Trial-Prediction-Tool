@@ -1,8 +1,10 @@
 # Front end - the client side of the application
 
 ## Used Technologies:
-Vue 3 JS
+Vue 3 JS application 
+
 Completed installation: Vite + ESLint + Prettier
+
 Incompleted: Auth0 linkage, mock dataset, Vitest/Jest
 
 ## Setup
