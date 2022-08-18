@@ -19,7 +19,7 @@ If this is your first visit to this repository, please review the next section b
 
 ``` 
 git config --global user.email "[YOUR_EMAIL]"
-git config --global user.name "[YOUR_ID]"
+git config --global user.name "[YOUR_STUDENT_ID]"
 git config --global user.password "[YOUR_PASSWORD]" 
 ```
 
