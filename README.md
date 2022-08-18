@@ -9,7 +9,7 @@ This is a basic expressJS + VueJS + node.js application with some OAuth security
 - `experimental` folder = for unused, experimenting codes
 
 ## Basic setup
-If this is your initial visit of the repository, please review the next section below, otherwise follow these instructions to compile the application: 
+If this is your first visit to this repository, please review the next section below, otherwise follow these instructions to compile the application: 
 1.	Install node.js at https://nodejs.org/en/download/, or check its version using `node -v` in your terminal
 2.  Check the `README.md` of the directories for further instructions
 
