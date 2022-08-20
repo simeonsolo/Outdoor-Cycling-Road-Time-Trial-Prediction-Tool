@@ -10,27 +10,27 @@ router.post('/signup', function(req, res){
     var pass = req.body.password;
     var phone = req.body.phone;
 
-    req.pool.getConnection( function(err,connection) {
-        if (err) {
-            res.sendStatus(502);
-        return;
-        }
+    // req.pool.getConnection( function(err,connection) {
+    //     if (err) {
+    //         res.sendStatus(502);
+    //     return;
+    //     }
 
-        // Search for username in DB, if already there return 418, else continue on
-        // This method could probably be refactored/combined with req below
-        var query = "SELECT username FROM users WHERE username = ?;";
-        connection.query(query, [username], function(err, rows, fields) {
-        connection.release(); // release connection
-            if (err) {
-                res.sendStatus(520);
-                return;
-            }
-            if(rows.length > 0) {
-                res.sendStatus(418);
-                return;
-            }
-        });
-   });
+//         // Search for username in DB, if already there return 418, else continue on
+//         // This method could probably be refactored/combined with req below
+//         var query = "SELECT username FROM users WHERE username = ?;";
+//         connection.query(query, [username], function(err, rows, fields) {
+//         connection.release(); // release connection
+//             if (err) {
+//                 res.sendStatus(520);
+//                 return;
+//             }
+//             if(rows.length > 0) {
+//                 res.sendStatus(418);
+//                 return;
+//             }
+//         });
+//    });
 
     req.pool.getConnection( function(err,connection) {
         if (err) {
