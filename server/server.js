@@ -15,13 +15,11 @@ var logger = require('morgan');
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 
-// Placeholder database name...
 var dbConnectionPool = mysql.createPool({
   host: 'localhost',
-  database: 'bikedb',
+  database: 'CYCOUT10',
   multipleStatements: true
 });
-
 
 app.use(session({
   secret: 'arlsiujfghasdk',

@@ -1,14 +1,14 @@
 var express = require('express');
 var router = express.Router();
 
-// Most of this is only from WDC project, but I assume the format would be similar? 
-// Really depends on how the express-jwt module works
-// This will need to be edited once the database is formed.
+// POST method for signing up users
 router.post('/signup', function(req, res){
-    var given = req.body.given;
-    var family = req.body.family;
+    var username = req.body.username;
+    var first = req.body.first;
+    var last = req.body.last;
     var email = req.body.email;
     var pass = req.body.password;
+    var phone = req.body.phone;
 
     req.pool.getConnection( function(err,connection) {
         if (err) {
@@ -16,8 +16,30 @@ router.post('/signup', function(req, res){
         return;
         }
 
-        var query = "INSERT INTO Users (GivenName, FamilyName, Email, Password) VALUES (0,?,?,?,AES_ENCRYPT(?,'key')); SELECT LAST_INSERT_ID() AS UserId;";
-        connection.query(query, [given, family, email, pass], function(err, rows, fields) {
+        // Search for username in DB, if already there return 418, else continue on
+        // This probably could be refactored
+        var query = "SELECT username FROM users WHERE username = ?;";
+        connection.query(query, [username], function(err, rows, fields) {
+        connection.release(); // release connection
+            if (err) {
+                res.sendStatus(520);
+                return;
+            }
+            if(rows.length > 0) {
+                res.sendStatus(418);
+                return;
+            }
+        });
+   });
+
+    req.pool.getConnection( function(err,connection) {
+        if (err) {
+            res.sendStatus(502);
+        return;
+        }
+
+        var query = "INSERT INTO Users (username, password, firstName, lastName, email, phoneNum) VALUES(?, SHA2(?, 244), ?, ?, ?, ?) SELECT LAST_INSERT_ID() AS UserId;";
+        connection.query(query, [username, pass, first, last, email, phone], function(err, rows, fields) {
         connection.release(); // release connection
             if (err) {
                 res.sendStatus(520);
@@ -29,9 +51,10 @@ router.post('/signup', function(req, res){
    });
 });
 
+// POST method for logging in users
 router.post('/login', function(req, res, next) {
-    if( 'email' in req.body ){
-        var email = req.body.email;
+    if( 'username' in req.body ){
+        var username = req.body.username;
         var pass = req.body.password;
   
           //Connect to the database
@@ -40,8 +63,8 @@ router.post('/login', function(req, res, next) {
                   res.sendStatus(500);
               return;
               }
-          var query = "SELECT UserID FROM Users WHERE Email = ? AND Password = AES_ENCRYPT(?,'key')";
-          connection.query(query, [email, pass], function(err, rows, fields) {
+          var query = "SELECT username, firstName, lastName, email, phoneNum FROM users WHERE username = ? AND password  = SHA2(?, 244);";
+          connection.query(query, [username, pass], function(err, rows, fields) {
               connection.release(); // release connection
                   if (err) {
                       res.sendStatus(500);

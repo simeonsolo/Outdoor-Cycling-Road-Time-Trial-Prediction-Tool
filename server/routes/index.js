@@ -68,6 +68,7 @@ const authConfig = {
     res.send(event);
   });
   
+  // get homepage
   router.get("/", (req, res) => {
     res.send(index.html);
   });
