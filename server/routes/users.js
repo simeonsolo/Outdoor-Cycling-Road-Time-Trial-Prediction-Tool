@@ -17,7 +17,7 @@ router.post('/signup', function(req, res){
         }
 
         // Search for username in DB, if already there return 418, else continue on
-        // This probably could be refactored
+        // This method probably could be refactored
         var query = "SELECT username FROM users WHERE username = ?;";
         connection.query(query, [username], function(err, rows, fields) {
         connection.release(); // release connection
