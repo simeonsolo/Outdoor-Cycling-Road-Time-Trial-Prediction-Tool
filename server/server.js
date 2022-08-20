@@ -1,84 +1,47 @@
 // Some copied code
 const express = require("express");
+const path = require('path');
 const bodyParser = require("body-parser");
+const cookieParser = require('cookie-parser');
 const cors = require("cors");
 const app = express();
 const port = 8000;
 const jwt = require("express-jwt");
 const jwksRsa = require("jwks-rsa");
+const mysql = require('mysql');
+const session = require('express-session');
+var logger = require('morgan');
+
+const indexRouter = require('./routes/index');
+const usersRouter = require('./routes/users');
+
+// Placeholder database name...
+var dbConnectionPool = mysql.createPool({
+  host: 'localhost',
+  database: 'bikedb',
+  multipleStatements: true
+});
+
+
+app.use(session({
+  secret: 'arlsiujfghasdk',
+  resave: false,
+  saveUninitialized: true,
+  cookie: { secure: false }
+}));
 
 app.use(bodyParser.json());
 app.use(cors());
 app.use(express.urlencoded({ extended: true }));
+app.use(cookieParser());
+app.use(logger('dev'));
 
-// Set up Auth0 configuration
-const authConfig = {
-  domain: "YOUR-DOMAIN",
-  audience: "YOUR-IDENTIFIER",
-};
+app.use(express.static(path.join(__dirname, '..', 'client')));
 
-// Create middleware to validate the JWT using express-jwt
-const checkJwt = jwt({
-  // Provide a signing key based on the key identifier in the header and the signing keys provided by your Auth0 JWKS endpoint.
-  secret: jwksRsa.expressJwtSecret({
-    cache: true,
-    rateLimit: true,
-    jwksRequestsPerMinute: 5,
-    jwksUri: `https://${authConfig.domain}/.well-known/jwks.json`,
-  }),
+app.use('/', indexRouter);
+app.use('/users', usersRouter);
 
-  // Validate the audience (Identifier) and the issuer (Domain).
-  audience: authConfig.audience,
-  issuer: `https://${authConfig.domain}/`,
-  algorithms: ["RS256"],
-});
-
-// mock data to send to our frontend
-let events = [
-  {
-    id: 1,
-    name: "Charity Ball",
-    category: "Fundraising",
-    description:
-      "Spend an elegant night of dinner and dancing with us as we raise money for our new rescue farm.",
-    featuredImage: "https://placekitten.com/500/500",
-    images: [
-      "https://placekitten.com/500/500",
-      "https://placekitten.com/500/500",
-      "https://placekitten.com/500/500",
-    ],
-    location: "1234 Fancy Ave",
-    date: "12-25-2019",
-    time: "11:30",
-  },
-  {
-    id: 2,
-    name: "Rescue Center Goods Drive",
-    category: "Adoptions",
-    description:
-      "Come to our donation drive to help us replenish our stock of pet food, toys, bedding, etc. We will have live bands, games, food trucks, and much more.",
-    featuredImage: "https://placekitten.com/500/500",
-    images: ["https://placekitten.com/500/500"],
-    location: "1234 Dog Alley",
-    date: "11-21-2019",
-    time: "12:00",
-  },
-];
-
-// get all events
-app.get("/events", (req, res) => {
-  res.send(events);
-});
-
-app.get("/events/:id", checkJwt, (req, res) => {
-  const id = Number(req.params.id);
-  const event = events.find((event) => event.id === id);
-  res.send(event);
-});
-
-app.get("/", (req, res) => {
-  res.send(`Hi! Server is listening on port ${port}`);
-});
+module.exports = app;
 
 // listen on the port
 app.listen(port);
