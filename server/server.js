@@ -17,8 +17,6 @@ const usersRouter = require('./routes/users');
 
 var dbConnectionPool = mysql.createPool({
   host: 'localhost',
-  user: 'user',
-  password: 'password',
   database: 'CYCOUT10',
   multipleStatements: true
 });
