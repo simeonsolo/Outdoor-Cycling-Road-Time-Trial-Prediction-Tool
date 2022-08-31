@@ -48,3 +48,102 @@ module.exports = app;
 
 // listen on the port
 app.listen(port);
+
+/* FUNCTION FOR LOGGING IN USER */
+/* receives username & password as input */
+function login(Username, Password) {
+  /* obtain inputs */
+  let user = {
+      username: Username,
+      password: Password,
+  }
+  /* send POST request */
+  let xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 200) {
+          /* login success */
+          response = JSON.parse(this.responseText); /* returns JSON object of users details */
+      }
+      else if (this.readyState == 4 && this.status >= 400) {
+          /* login fail */
+          alert("Invalid username or password."); /* alert */
+      }
+  };
+  xhttp.open("POST", "/login", true);
+  xhttp.setRequestHeader("Content-type", "application/json");
+  xhttp.send(JSON.stringify(user));
+}
+
+/* FUNCTION FOR SIGNING UP USER & SIGNING IN USER */
+/* receives username,password,firstName,lastName,email,phoneNum as input */
+function signup(Username,Password,FirstName,LastName,Email,Phone) {
+  /* obtain inputs */
+  let user = {
+      username: Username,
+      password: Password,
+      firstName: FirstName,
+      lastName: LastName,
+      email: Email,
+      phoneNum: Phone,
+  }
+  /* send POST request */
+  let xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 200) {
+          /* signup success */
+          response = JSON.parse(this.responseText); // returns JSON object of users details
+      } else if (this.readyState == 4 && this.status >= 400) {
+          /* signup fail */
+          alert("Signup Unsuccessful"); // alert
+      }
+  };
+  xhttp.open("POST", "/signup");
+  xhttp.setRequestHeader("Content-type", "application/json");
+  xhttp.send(JSON.stringify(user));
+}
+
+/* FUNCTION FOR MAKING USER ADMIN */
+/* receives username as input */
+function makeAdmin(Username) {
+  /* obtain inputs */
+  let administrator = {
+      username: Username
+  }
+  /* send POST request */
+  let xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 200) {
+          /* success */
+          alert("Administrator created");
+      } else if (this.readyState == 4 && this.status >= 400) {
+          /* fail */
+          alert("Administrator creation failed");
+      }
+  };
+  xhttp.open("POST", "/makeAdmin");
+  xhttp.setRequestHeader("Content-type", "application/json");
+  xhttp.send(JSON.stringify(administrator));
+}
+
+/* FUNCTION FOR CHECKING IF ADMIN IS USER */
+/* receives username as input */
+function checkAdmin(Username) {
+  /* obtain inputs */
+  let administrator = {
+      username: Username
+  }
+  /* send POST request */
+  let xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 200) {
+          /* success */
+          alert("User is administrator");
+      } else if (this.readyState == 4 && this.status >= 400) {
+          /* fail */
+          alert("User is not administrator");
+      }
+  };
+  xhttp.open("POST", "/checkAdmin");
+  xhttp.setRequestHeader("Content-type", "application/json");
+  xhttp.send(JSON.stringify(administrator));
+}
