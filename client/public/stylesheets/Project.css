@@ -1,11 +1,12 @@
 body {
   font-family: Arial, Helvetica, sans-serif;
   margin: 0;
+  box-sizing: border-box;
 }
 
 #A_AusCycling_img{
-    margin: 0;
-    float: left;
+  margin: 0;
+  float: left;
 }
 
 .A_navbar {
@@ -100,7 +101,7 @@ body {
 
 }
 
-/* For updatePassword.html */
+                                                        /* For updatePassword.html */
 
 .A_UpdatePasswordDiv{
   margin-top: 0;
@@ -124,3 +125,122 @@ body {
   color: #7a7a7d;
   transition: all 0.3s ease 0s;
 }
+
+.A_heading_and_paragraph{
+  margin-left: 100px;
+}
+
+.A_container input[type=password], input[type=text]{
+  color: grey;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  padding: 15px 9px;
+  margin: 8px 0;
+  box-sizing: border-box;
+  width: 70%;
+}
+
+.A_container{
+  /*margin-left: 100px; */
+}
+
+#A_updatePasswordBtn{
+  color: #282A35;
+  font-size: 15px;
+  background-color: #f3eb0c;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  padding: 15px 25px;
+  margin-top: 6px;
+  margin-left: 200px;
+
+}
+
+#A_updatePasswordBtn:hover{
+   background-color: #d9d20f;
+   transition: all 0.3s ease 0s;
+}
+
+/* Make 2 divs side by side */
+
+#A_wrapper{
+  display: grid;
+  grid-template-columns: 40% 1fr;
+}
+
+#A_leftDiv{
+  grid-column:1;
+  overflow: hidden;
+  /*border: 2px red solid; */
+}
+
+#A_rightDiv{
+  margin-top: 25px;
+  grid-column:2;
+  overflow: hidden;
+}
+
+/* Footer */
+
+.A_footer {
+   /*position: fixed; */
+   left:0;
+   bottom: 0;
+   width: 100%;
+   background-color: #36362e;
+   color: white;
+
+}
+
+#A_AusCycling{
+  text-align: center;
+  color: white;
+}
+
+#A_Privacy_TermsOfUse{
+  margin-left: 30px;
+}
+
+#A_Privacy_TermsOfUse p{
+  font-size: 14px;
+}
+
+
+#A_Privacy_TermsOfUse a{
+  color: #f1f1f1;
+  text-decoration: none;
+  font-size: 14px;
+  /*margin-left: 50px;*/
+}
+
+#A_Privacy_TermsOfUse a:hover{
+  color: #f3eb0c;
+  transition: all 0.3s ease 0s;
+}
+
+#A_icons{
+  text-align: right;
+  margin-right: 20px;
+}
+
+#A_icons h3{
+  margin-right: 80px;
+}
+
+#A_icons a{
+  margin: none;
+  border-radius: 4px;
+  color: #b1b1b1;
+  transition: all .3s;
+  font-size: 45px;
+  text-decoration: none;
+}
+
+#A_icons a:hover{
+  color: #f3eb0c ;
+}
+
+
+
+
