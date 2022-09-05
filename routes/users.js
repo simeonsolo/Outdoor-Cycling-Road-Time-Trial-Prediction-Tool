@@ -1,6 +1,11 @@
 var express = require("express");
 var router = express.Router();
 
+/* GET users listing. */
+router.get("/", function (req, res, next) {
+  res.send("User route work!");
+});
+
 /* POST request signing in user */
 /* Receives JSON object that contains username & password */
 router.post("/login", function (req, res, next) {
