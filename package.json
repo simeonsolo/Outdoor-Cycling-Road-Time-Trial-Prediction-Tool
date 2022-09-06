@@ -1,5 +1,5 @@
 {
-  "name": "back-end",
+  "name": "cycout10",
   "version": "1.0.0",
   "description": "",
   "main": "app.js",
@@ -8,6 +8,7 @@
     "client-install": "npm install --prefix client",
     "server": "nodemon app.js",
     "client": "npm run serve --prefix client",
+    "build": "npm run build --prefix client",
     "dev": "concurrently \"npm run server\" \"npm run client\""
   },
   "author": "CYCOUT10",

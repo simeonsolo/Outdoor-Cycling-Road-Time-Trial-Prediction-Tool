@@ -6,9 +6,9 @@ const path = require("path");
 const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
 const cors = require("cors");
-const jwt = require("express-jwt");
-const jwksRsa = require("jwks-rsa");
-const session = require("express-session");
+// const jwt = require("express-jwt");
+// const jwksRsa = require("jwks-rsa");
+// const session = require("express-session");
 const logger = require("morgan");
 const mysql = require("mysql");
 
@@ -37,16 +37,6 @@ app.use(function (req, res, next) {
   next();
 });
 
-// Cookie setup
-// app.use(
-//   session({
-//     secret: "arlsiujfghasdk",
-//     resave: false,
-//     saveUninitialized: true,
-//     cookie: { secure: false },
-//   })
-// );
-
 // Json Body middleware
 app.use(bodyParser.json());
 // Cors middleware
@@ -58,6 +48,17 @@ app.use(logger("dev"));
 // Seting up the static directory
 app.use(express.static(path.join(__dirname, "public")));
 
+// // Cookie setup
+// app.use(
+//   session({
+//     secret: "szxdcfvgbhjnmkkjhgffghi",
+//     resave: false,
+//     saveUninitialized: true,
+//     cookie: { secure: false },
+//   })
+// );
+
+// Security
 // // Create middleware to validate the JWT using express-jwt
 // const checkJwt = jwt({
 //   // Provide a signing key based on the key identifier in the header and the signing keys provided by your Auth0 JWKS endpoint.
@@ -94,38 +95,26 @@ app.use(function (err, req, res, next) {
   res.render("error");
 });
 
-app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "public/index.html"));
-});
+// app.get("*", (req, res) => {
+//   res.sendFile(path.join(__dirname, "public/index.html"));
+// });
 
 var debug = require("debug")("test:server");
 var http = require("http");
 
-/**
- * Get port from environment and store in Express.
- */
-
+// Get port from environment and store in Express.
 const port = normalizePort(process.env.PORT || "8000");
 app.set("port", port);
 
-/**
- * Create HTTP server.
- */
-
+// Create HTTP server.
 var server = http.createServer(app);
 
-/**
- * Listen on provided port, on all network interfaces.
- */
-
+// Listen on provided port, on all network interfaces.
 server.listen(port);
 server.on("error", onError);
 server.on("listening", onListening);
 
-/**
- * Normalize a port into a number, string, or false.
- */
-
+// Normalize a port into a number, string, or false.
 function normalizePort(val) {
   var port = parseInt(val, 10);
 
@@ -142,10 +131,7 @@ function normalizePort(val) {
   return false;
 }
 
-/**
- * Event listener for HTTP server "error" event.
- */
-
+// Event listener for HTTP server "error" event.
 function onError(error) {
   if (error.syscall !== "listen") {
     throw error;
@@ -158,26 +144,17 @@ function onError(error) {
     case "EACCES":
       console.error(bind + " requires elevated privileges");
       process.exit(1);
-      break;
     case "EADDRINUSE":
       console.error(bind + " is already in use");
       process.exit(1);
-      break;
     default:
       throw error;
   }
 }
 
-/**
- * Event listener for HTTP server "listening" event.
- */
-
+// Event listener for HTTP server "listening" event.
 function onListening() {
   var addr = server.address();
   var bind = typeof addr === "string" ? "pipe " + addr : "port " + addr.port;
   debug("Listening on " + bind);
 }
-
-// app.listen(port, () => {
-//   console.log(`Server started on port ${port}`);
-// });
