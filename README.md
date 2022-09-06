@@ -14,12 +14,13 @@ This is a `MySQL` + `Express.js` + `Vue.js` + `Node.js` web-application for AusC
 
 ## Setup
 1. Run `npm install` and `npm client-install` in the first pull or when new dependencies/APIs are added to avoid unexpected behaviours in `client` and `server`
-2. Run `npm run dev` to review the application
-3. Open in web browser using `http://localhost:8000/` to test the routes
-4. For Front end team, to test on FE dynamically, open in web browser using `http://localhost:8080/`
+2. Run `npm run build` to set up web pages 
+3. Run `npm run dev` to review the application
+4. Open in web browser using `http://localhost:8000/` to test the application
+5. For Front end team, navigate to `http://localhost:8080/` for faster reload in `client` directory
 
 Feel free to add if you think there's something missing 🙂
 
 ### Happy coding y'all…
 
-    ![cat codes](https://c.tenor.com/y2JXkY1pXkwAAAAM/cat-computer.gif)
+![cat codes](https://c.tenor.com/y2JXkY1pXkwAAAAM/cat-computer.gif)
