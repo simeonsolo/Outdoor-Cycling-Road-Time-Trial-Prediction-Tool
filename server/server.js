@@ -147,3 +147,53 @@ function checkAdmin(Username) {
   xhttp.setRequestHeader("Content-type", "application/json");
   xhttp.send(JSON.stringify(administrator));
 }
+
+/* FUNCTION FOR CHANGING A USERS PASSWORD */
+/* receives new password, username and old passwordas input */
+function updatePassword(NewPassword,Username,Password) {
+    /* obtain inputs */
+    let user = {
+        newPassword: NewPassword,
+        username: Username,
+        password: Password
+    }
+    /* send POST request */
+    let xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            /* success */
+            response = JSON.parse(this.responseText); // returns JSON object of users details
+        } else if (this.readyState == 4 && this.status >= 400) {
+            /* fail */
+            alert("Signup Unsuccessful"); // alert
+        }
+    };
+    xhttp.open("POST", "/updatePassword");
+    xhttp.setRequestHeader("Content-type", "application/json");
+    xhttp.send(JSON.stringify(user));
+}
+
+/* FUNCTION FOR CHANGING A USERS CONTACT DETAILS */
+/* receives new username, new email and new phone number as input */
+function updatePassword(Username,Email,PhoneNum) {
+    /* obtain inputs */
+    let user = {
+        username: Username,
+        email: Email,
+        phoneNum: PhoneNum
+    }
+    /* send POST request */
+    let xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            /* success */
+            response = JSON.parse(this.responseText); // returns JSON object of users details
+        } else if (this.readyState == 4 && this.status >= 400) {
+            /* fail */
+            alert("Signup Unsuccessful"); // alert
+        }
+    };
+    xhttp.open("POST", "/updateContactDetails");
+    xhttp.setRequestHeader("Content-type", "application/json");
+    xhttp.send(JSON.stringify(user));
+} 
