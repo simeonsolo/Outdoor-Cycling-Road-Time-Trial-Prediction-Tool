@@ -1,3 +1,2 @@
 # Back-end routing and API setup
-1. Run `npm install`
-2. Run `npm start`
+1. All routes in the server are available here
