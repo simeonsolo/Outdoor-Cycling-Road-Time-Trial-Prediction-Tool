@@ -1,7 +1,7 @@
 # Front end - the client side of the application
 
 ## Used Technologies:
-Vue3 JS application + [testing framework insert here (Jest/Mocha)]
+Vue3 JS application + [testing framework insert here (Vitest config available)]
 
 Completed installation: Vue + ESLint + Prettier
 
