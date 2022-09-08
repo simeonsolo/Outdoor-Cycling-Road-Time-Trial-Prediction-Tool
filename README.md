@@ -6,14 +6,14 @@ This is a `MySQL` + `Express.js` + `Vue.js` + `Node.js` web-application for AusC
 ## File layout
 - **client** folder = for front-end configurations in `Vue`
 - **database** folder = for `sakila` database configurations in `MySQL`
-- **dist** folder = for deployed static pages built on `client`, release this folder for AusCycling
+- **dist** folder [NOT PRESENT IN REPO to avoid unnecessary file changes in production, but will be generated in every `npm run build`] = for deployed static pages built on `client`, release this folder for AusCycling
 - **documentation** folder = for all documentation in front-end, database, back-end, GitHub and testing setup instructions
 - **routes** folder = for routing configurations in back-end based on `Express`
 - **test** folder = for code testing in `npx express-generator` version 
 - **views** folder = for engine setup in `Pug`
 
 ## Setup
-1. Run `npm install` and `npm client-install` in the first pull or when new dependencies/APIs are added to avoid unexpected behaviours in `client` and `server`
+1. Run `npm install` and `npm client-install` after `git pull` or when new dependencies/APIs are added to avoid unexpected behaviours in `client` and `routes`
 2. Run `npm run build` to set up web pages 
 3. Run `npm run dev` to review the application
 4. Open in web browser using `http://localhost:8000/` to test the application
