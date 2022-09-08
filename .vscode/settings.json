@@ -5,5 +5,21 @@
   "[javascript]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
-  "editor.formatOnSave": true
+  "editor.formatOnSave": true,
+  "sqltools.connections": [
+    {
+      "mysqlOptions": {
+        "authProtocol": "xprotocol"
+      },
+      "previewLimit": 50,
+      "server": "localhost",
+      "port": 33060,
+      "askForPassword": true,
+      "driver": "MySQL",
+      "database": "CYCOUT10",
+      "username": "root",
+      "name": "MySQL",
+      "connectionTimeout": 1000
+    }
+  ]
 }

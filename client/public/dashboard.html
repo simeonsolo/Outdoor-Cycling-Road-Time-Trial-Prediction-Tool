@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<style>
+    .dash_button {
+        background-color: #f3eb0c;
+        color: #10514a;
+        border: none;
+        height: 40px;
+        width: 100px;
+        border-radius: 12px;
+        cursor: pointer;
+    }
+
+    :root {
+        --body-color: #10514a;
+        --sidebar-color: #36362e;
+        --primary-color: #f3eb0c;
+        --primary-color-light: #ffffff;
+        --toggle-color: rgb(33, 33, 46);
+        --text-color: #707070;
+
+        --tran-03: all 0.2s ease;
+        --tran-03: all 0.2s ease;
+        --tran-04: all 0.2s ease;
+        --tran-05: all 0.2s ease;
+    }
+
+    body {
+        height: 100vh;
+        background-color: var(--body-color) !important;
+    }
+
+    .sidebar .text {
+        font-size: 16px;
+        font-weight: 500;
+        color: var(--text-color)
+    }
+
+    .sidebar .image {
+        display: flex;
+        align-items: center;
+    }
+
+    /* */
+    .sidebar .image-text img {
+        width: 120px;
+        border-radius: 6px;
+        top: 0;
+        left: 0;
+
+    }
+
+    .sidebar {
+        position: fixed;
+        height: 100%;
+        width: 250px;
+        top: 0;
+        left: 0;
+        padding: 12px 14px;
+        background: var(--sidebar-color);
+    }
+
+    .sidebar header {
+        position: relative;
+    }
+
+    .sidebar header .image-text {
+        display: flex;
+        align-items: center;
+    }
+
+    .sidebar li {
+        background: var(--primary-color-light);
+        height: 50px;
+        margin-top: 10px;
+        list-style: none;
+        display: flex;
+        align-items: center;
+        border-radius: 8px;
+    }
+
+    .sidebar li .icon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 30px;
+        min-width: 60px;
+        color: #10514a;
+
+    }
+
+    .sidebar li .nav-link {
+        position: absolute;
+
+    }
+
+    .sidebar li .text {
+        color: var(--text-color);
+        transition: var(--tran-02)
+    }
+
+    .sidebar .search-box {
+        background: var(--primary-color-light);
+        position: relative;
+        border-radius: 8px;
+        width: 207px;
+
+    }
+
+    .search-box input {
+        height: 100%;
+        width: 90%;
+        outline: none;
+        border: none;
+        border-radius: 8px;
+        background: var(--primary-color-light);
+    }
+
+    .search-box .icon {
+        position: relative;
+        left: 17px;
+    }
+
+    .search-box .search-box-input {
+        position: relative;
+        left: 15px;
+        font-size: large;
+    }
+
+    .sidebar li a {
+        height: 100%;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        text-decoration: none;
+        border-radius: 8px;
+        transition: var(--tran-04);
+    }
+
+    .sidebar .nav-link:hover {
+        background: var(--primary-color);
+    }
+
+
+    .sidebar li a:hover .icon header .image-text .header-text {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .header-text .name {
+        font-weight: 600;
+    }
+
+    .header-text .profession {
+        margin-top: -2px;
+    }
+
+    .sidebar .nav-link {
+        position: relative;
+    }
+</style>
+
+<head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vite + Vue</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
+</head>
+
+<body>
+    <div id="app"></div>
+    <script type="module" src="../src/main.js"></script>
+
+    <nav class="sidebar">
+        <header>
+            <div class="image-text">
+                <span class="image">
+                    <img src="images/auscycling-logo.png" alt="logo">
+                </span>
+
+                <div class="text header-text">
+                    <span class="name"> CYCOUT10</span>
+
+                </div>
+            </div>
+
+        </header>
+
+        <div class="menu-bar">
+            <div class="menu">
+                <li class="search-box">
+                    <i class='bx bx-search-alt icon'></i>
+                    <input class="search-box-input" type="Search" placeholder="Search...">
+                </li>
+
+                <li class="nav-link">
+                    <a href="#">
+                        <i class='bx bx-home-alt icon'></i>
+                        <span class="text nav-text"> Dashboard</span>
+                    </a>
+                </li>
+
+                <li class="nav-link">
+                    <a href="#">
+                        <i class='bx bx-cycling icon'></i>
+                        <span class="text nav-text"> My Bikes</span>
+                    </a>
+                </li>
+
+                <li class="nav-link">
+                    <a href="#">
+                        <i class='bx bx-map icon'></i>
+                        <span class="text nav-text"> My Courses</span>
+                    </a>
+                </li>
+
+                <li class="nav-link">
+                    <a href="#">
+                        <i class='bx bxs-flag-checkered icon'></i>
+                        <span class="text nav-text"> My Races</span>
+                    </a>
+                </li>
+            </div>
+        </div>
+    </nav>
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"
+        integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"
+        integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13"
+        crossorigin="anonymous"></script>
+
+</body>
+
+</html>
