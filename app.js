@@ -20,7 +20,10 @@ const usersRouter = require("./routes/users");
 var dbConnectionPool = mysql.createPool({
   host: "localhost",
   database: "CYCOUT10",
+  user: "bothn",
+  password: "A1!",
   multipleStatements: true,
+  socketPath: '/var/run/mysqld/mysqld.sock',
 });
 
 // Initialize the app

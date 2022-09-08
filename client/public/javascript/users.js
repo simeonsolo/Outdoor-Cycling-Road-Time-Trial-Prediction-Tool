@@ -1,0 +1,180 @@
+window.onload=function(){
+    if(document.getElementById("loginBut")){
+        document.getElementById("loginBut").addEventListener("click", function() {
+            Username  = document.getElementById("username").value;
+            Password  = document.getElementById("psw").value;
+            login(Username, Password);
+        }, false);
+    }   
+
+    if(document.getElementById("signUp")){
+        document.getElementById("signUp").addEventListener("click", function() {
+            Username  = document.getElementById("username").value;
+            Password  = document.getElementById("psw").value;
+            FirstName = document.getElementById("firstname").value;
+            LastName = document.getElementById("lastname").value;
+            Email = document.getElementById("email").value;
+            Phone = document.getElementById("phonenumber").value;
+            signup(Username, Password, FirstName, LastName, Email, Phone);
+        }, false);
+    }
+}
+
+
+/* FUNCTION FOR LOGGING IN USER */
+/* receives username & password as input */
+function login(Username, Password) {
+    /* obtain inputs */
+    let user = {
+        username: Username,
+        password: Password,
+    }
+    /* send POST request */
+    let xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            /* login success */
+            response = JSON.parse(this.responseText); /* returns JSON object of users details */
+        }
+        else if (this.readyState == 4 && this.status >= 400 && this.status < 500) {
+            /* login fail */
+            alert("Invalid username or password."); /* alert */
+        }
+        else if (this.readyState == 4 && this.status >= 500) {
+            /* server error */
+            alert("Server Error"); /* alert */
+        }
+    };
+    xhttp.open("POST", "/users/login", true);
+    xhttp.setRequestHeader("Content-type", "application/json");
+    xhttp.send(JSON.stringify(user));
+  }
+  
+  /* FUNCTION FOR SIGNING UP USER & SIGNING IN USER */
+  /* receives username,password,firstName,lastName,email,phoneNum as input */
+  function signup(Username,Password,FirstName,LastName,Email,Phone) {
+    /* obtain inputs */
+    let user = {
+        username: Username,
+        password: Password,
+        firstName: FirstName,
+        lastName: LastName,
+        email: Email,
+        phoneNum: Phone,
+    }
+    /* send POST request */
+    let xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            /* signup success */
+            response = JSON.parse(this.responseText); // returns JSON object of users details
+        } else if (this.readyState == 4 && this.status >= 400) {
+            /* signup fail */
+            alert("Signup Unsuccessful"); // alert
+        }
+        else if (this.readyState == 4 && this.status >= 500) {
+            /* server error */
+            alert("Server Error"); /* alert */
+        }
+    };
+    xhttp.open("POST", "/users/signup");
+    xhttp.setRequestHeader("Content-type", "application/json");
+    xhttp.send(JSON.stringify(user));
+  }
+  
+  /* FUNCTION FOR MAKING USER ADMIN */
+  /* receives username as input */
+  function makeAdmin(Username) {
+    /* obtain inputs */
+    let administrator = {
+        username: Username
+    }
+    /* send POST request */
+    let xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            /* success */
+            alert("Administrator created");
+        } else if (this.readyState == 4 && this.status >= 400) {
+            /* fail */
+            alert("Administrator creation failed");
+        }
+    };
+    xhttp.open("POST", "/makeAdmin");
+    xhttp.setRequestHeader("Content-type", "application/json");
+    xhttp.send(JSON.stringify(administrator));
+  }
+  
+  /* FUNCTION FOR CHECKING IF ADMIN IS USER */
+  /* receives username as input */
+  function checkAdmin(Username) {
+    /* obtain inputs */
+    let administrator = {
+        username: Username
+    }
+    /* send POST request */
+    let xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            /* success */
+            alert("User is administrator");
+        } else if (this.readyState == 4 && this.status >= 400) {
+            /* fail */
+            alert("User is not administrator");
+        }
+    };
+    xhttp.open("POST", "/checkAdmin");
+    xhttp.setRequestHeader("Content-type", "application/json");
+    xhttp.send(JSON.stringify(administrator));
+  } 
+
+
+/* FUNCTION FOR CHANGING A USERS PASSWORD */
+/* receives new password, username and old passwordas input */
+function updatePassword(NewPassword,Username,Password) {
+    /* obtain inputs */
+    let user = {
+        newPassword: NewPassword,
+        username: Username,
+        password: Password
+    }
+    /* send POST request */
+    let xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            /* success */
+            response = JSON.parse(this.responseText); // returns JSON object of users details
+        } else if (this.readyState == 4 && this.status >= 400) {
+            /* fail */
+            alert("Signup Unsuccessful"); // alert
+        }
+    };
+    xhttp.open("POST", "/updatePassword");
+    xhttp.setRequestHeader("Content-type", "application/json");
+    xhttp.send(JSON.stringify(user));
+}
+
+/* FUNCTION FOR CHANGING A USERS CONTACT DETAILS */
+/* receives new username, new email and new phone number as input */
+function updatePassword(Username,Email,PhoneNum) {
+    /* obtain inputs */
+    let user = {
+        username: Username,
+        email: Email,
+        phoneNum: PhoneNum
+    }
+    /* send POST request */
+    let xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            /* success */
+            response = JSON.parse(this.responseText); // returns JSON object of users details
+        } else if (this.readyState == 4 && this.status >= 400) {
+            /* fail */
+            alert("Signup Unsuccessful"); // alert
+        }
+    };
+    xhttp.open("POST", "/updateContactDetails");
+    xhttp.setRequestHeader("Content-type", "application/json");
+    xhttp.send(JSON.stringify(user));
+}

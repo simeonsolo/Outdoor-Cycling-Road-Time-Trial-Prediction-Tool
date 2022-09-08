@@ -32,7 +32,7 @@ router.post("/login", function (req, res, next) {
             return;
           }
           if (rows.length > 0) {
-            req.session.user = rows[0]; /* setting session */
+            //req.session.user = rows[0]; /* setting session */
             res.json(rows); /* sending back user details */
           } else {
             res.sendStatus(401); /* bad login */
@@ -97,7 +97,7 @@ router.post("/signup", function (req, res, next) {
                 return;
               }
               if (rows.length > 0) {
-                req.session.user = rows[0]; /* setting session */
+                //req.session.user = rows[0]; /* setting session */
                 res.json(rows); /* sending back details */
               } else {
                 res.sendStatus(401); /* unsuccessful */
