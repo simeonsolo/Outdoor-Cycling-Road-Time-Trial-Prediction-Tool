@@ -6,8 +6,8 @@ This is a `MySQL` + `Express.js` + `Vue.js` + `Node.js` web-application for AusC
 ## File layout
 - **client** folder = for front-end configurations in `Vue`
 - **database** folder = for `sakila` database configurations in `MySQL`
+- **dist** folder = for deployed static pages built on `client`, release this folder for AusCycling
 - **documentation** folder = for all documentation in front-end, database, back-end, GitHub and testing setup instructions
-- **public** folder = for deployed static pages built on `client`, release this folder for AusCycling
 - **routes** folder = for routing configurations in back-end based on `Express`
 - **test** folder = for code testing in `npx express-generator` version 
 - **views** folder = for engine setup in `Pug`

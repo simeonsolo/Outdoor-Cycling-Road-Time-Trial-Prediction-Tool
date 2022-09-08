@@ -33,3 +33,15 @@ SELECT user,
     admin_id
 FROM administrators
 WHERE user = ?;
+/* UPDATE PASSWORD */
+UPDATE users
+SET password = SHA2(?, 244)
+WHERE username = ?
+    AND password = SHA2(?, 244);
+/* UPDATE USER CONTACT INFORMATION */
+UPDATE users
+SET firstName = ?,
+    lastName = ?,
+    email = ?,
+    phoneNum = ?
+WHERE username = ?;

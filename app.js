@@ -46,7 +46,7 @@ app.use(cookieParser());
 app.use(logger("dev"));
 
 // Seting up the static directory
-app.use(express.static(path.join(__dirname, "public")));
+app.use(express.static(path.join(__dirname, "dist")));
 
 // // Cookie setup
 // app.use(
