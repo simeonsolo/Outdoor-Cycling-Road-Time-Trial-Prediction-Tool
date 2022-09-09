@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang = "en">
+    <style>
+        table, th, td {
+          border:1px solid black;
+        }
+        </style>
+    <head>
+        <title>Testing page</title>
+        <meta charset="UTF-8">
+    </head>
+    <body>
+        <h1> Excel spreadsheet input </h1>
+        <script src="codeExcelFunctions.js"></script>
+        
+        <div>
+            <h2>Rider Details:</h2>
+            <p>Mass Rider:</p>
+            <input type="text" id="mass_rider" value="0">
+            <p>Mass Bike:</p>
+            <input type="text" id="mass_bike" value="0">
+            <p>Mass Other:</p>
+            <input type="text" id="mass_other" value="0">
+            <p>Mass Total:</p>
+            <button onclick="calc_mass_total()">Calculate Total Mass</button>
+            <p id ="mass_total"></p>
+
+            <p>FTP:</p>
+            <input type="text" id="ftp" value="0">
+            <p>W':</p>
+            <input type="text" id="w'" value="0">
+        </div>
+
+        <div>
+            <h2>Power vs. slope info input:</h2>
+            <p id ="slope_threshold_descend">Slope threshold below which rider goes into descending position: <input type="text" id="slope_threshold_descend_input" value="0"> %</p>
+            <p id ="slope_threshold_climb">Slope threshold above which rider goes into climbing position: <input type="text" id="slope_threshold_climb_input" value="0"> %</p>
+        </div>
+
+        <div>
+            <h2>Position selection:</h2>
+            <p id ="slope_threshold_off">Slope threshold below which rider comes off steady state power:</p>
+            <input type="text" id="slope_threshold_steady_state_off" value="0">
+            <p id ="slope_threshold_over">Slope threshold below which rider goes over steady state power:</p>
+            <input type="text" id="slope_threshold_steady_state_over" value="0">
+            <br>
+            <button onclick="calc_slope_threshold()">Calculate Slope Thresholds</button>
+        </div>
+
+        <div>
+            <h2>Roll Mechanics:</h2>
+            <p>CRR: <input type="text" id="crr" value="0"></p>
+            <p>Mech eff: <input type="text" id="mech_eff" value="0"> %</p>
+            <p>Mol whl front: <input type="text" id="mol_whl_front" value="0"></p>
+            <p>Mol whl rear: <input type="text" id="mol_whl_rear" value="0"></p>
+            <p>Wheel Radius: <input type="text" id="wheel_radius" value="0"></p>
+            <br>
+            <br>
+            
+        </div>
+
+        <div>
+            <h2>Environment:</h2>
+            <p>Wind direction: <input type="text" id="wind_direction" value="0"> degrees</p>
+            <p id="headwind_towards">Headwind when travelling towards: 0 degrees <p><button onclick="calc_headwind_towards()">Calculate Headwind</button></p></p>
+            <p style="display:inline">Wind speed (std forecast @10m): <input type="text" id="wind_speed" value="0"><p id="wind_speed_result"  style="display:inline"> m/sec  =  0 km/hr </p><p><button onclick="calc_wind_speed()">Calculate Wind Speed (km/hr)</button></p></p>
+            <p>Density: <input type="text" id="mol_whl_rear" value="0"> kg/m^3</p>
+        </div>
+
+        <div>
+            <h2>CDA - lookup table</h2>
+            <p>Outriggers increment: <input type="text" id="outriggers_increment" value="0"></p>
+            <p>Supertuck increment: <input type="text" id="supertuck_increment" value="0"></p>
+            <table style="width:100%">
+                <tr>
+                    <th>CDA</th>
+                    <th>Ref Value @14 m/sec</th>
+                    <td>10</td>
+                    <td>11</td>
+                    <th>12</th>
+                    <td>13</td>
+                    <td>14</td>
+                    <td>15</td>
+                    <th>16</th>
+                    <td>17</td>
+                    <td>18</td>
+                    <td>19</td>
+                    <td>20</td>
+                </tr>
+                <tr>
+                    <td>CDA profiles</td>
+                    <td></td>
+                    <td>36.00</td>
+                    <td>39.60</td>
+                    <td>43.20</td>
+                    <td>46.80</td>
+                    <td>50.40</td>
+                    <td>54.00</td>
+                    <td>57.60</td>
+                    <td>61.20</td>
+                    <td>64.80</td>
+                    <td>68.40</td>
+                    <td>72.00</td>
+                </tr>
+                <tr>
+                    <td>Seated aero pos</td>
+                    <td>a</td>
+                    <td id="t,1,10">0</td>
+                    <td id="t,1,11">0</td>
+                    <td id="t,1,12"><input type="text" id="t_1_12_input" value="0"></td>
+                    <td id="t,1,13">0</td>
+                    <td id="t,1,14"><input type="text" id="t_1_14_input" value="0"></td>
+                    <td id="t,1,15">0</td>
+                    <td id="t,1,16"><input type="text" id="t_1_16_input" value="0"></td>
+                    <td id="t,1,17">0</td>
+                    <td id="t,1,18">0</td>
+                    <td id="t,1,19">0</td>
+                    <td id="t,1,20">0</td>
+                </tr>
+                <tr>
+                    <td>On outriggers</td>
+                    <td>b</td>
+                    <td id="t,2,10">0</td>
+                    <td id="t,2,11">0</td>
+                    <td id="t,2,12">0</td>
+                    <td id="t,2,13">0</td>
+                    <td id="t,2,14">0</td>
+                    <td id="t,2,15">0</td>
+                    <td id="t,2,16">0</td>
+                    <td id="t,2,17">0</td>
+                    <td id="t,2,18">0</td>
+                    <td id="t,2,19">0</td>
+                    <td id="t,2,20">0</td>
+                </tr>
+                <tr>
+                    <td>Supertuck</td>
+                    <td>c</td>
+                    <td id="t,3,10">0</td>
+                    <td id="t,3,11">0</td>
+                    <td id="t,3,12">0</td>
+                    <td id="t,3,13">0</td>
+                    <td id="t,3,14">0</td>
+                    <td id="t,3,15">0</td>
+                    <td id="t,3,16">0</td>
+                    <td id="t,3,17">0</td>
+                    <td id="t,3,18">0</td>
+                    <td id="t,3,19">0</td>
+                    <td id="t,3,20">0</td>
+                </tr>
+            </table>
+            <p><button onclick="populate_cda_table()">Populate CdA table</button></p>
+        </div>
+
+        <div>
+            <h2>Power input % of CP (or FTP):</h2>
+            <p style="display:inline">Steady state: <input type="text" id="steady_state_percent" value="0"> % of CP </p><p id="steady_state" style="display:inline"> 0</p>
+            <br>
+            <p style="display:inline">Over Threshol <input type="text" id="over_threshold_percent" value="0"> % of CP </p><p id="over_threshold" style="display:inline"> 0</p>
+            <br>
+            <p style="display:inline">Descend ave: <input type="text" id="descend_ave_percent" value="0"> % of CP </p><p id="descend_ave" style="display:inline"> 0</p>
+            <p><button onclick="calc_power_input()">Calc Power input %</button></p>
+
+            <br>
+            <h3>Power vs. terrain</h3>
+            <p>Gradient ranges - for info</p>
+            <p id="descend_gradient">Descending: (Minimum of course)% to -0.000001% | Power: </p><p id="descend_ave"></p>
+            <p id="flat_gradient">Flat, steady state: 0% to 0% | Power: </p><p id="steady_state"></p>
+            <p id="climb_gradient">Climbing > Threshold: 0.000001% to (Maximum of course)% | Power: </p><p id="over_threshold"></p>
+            <p><button onclick="calc_gradients()">Calc Gradients</button></p>
+        </div>
+    </body>
+    </html>
