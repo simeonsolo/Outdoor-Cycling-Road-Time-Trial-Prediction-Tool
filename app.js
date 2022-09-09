@@ -18,12 +18,12 @@ const usersRouter = require("./routes/users");
 
 // MySQL Database connection pool
 var dbConnectionPool = mysql.createPool({
-  host: "localhost",
+  host: "cycout.shop",
+  port: "3306",
   database: "CYCOUT10",
-  user: "bothn",
-  password: "A1!",
+  user: "cycout",
+  password: "cycout10",
   multipleStatements: true,
-  socketPath: '/var/run/mysqld/mysqld.sock',
 });
 
 // Initialize the app
