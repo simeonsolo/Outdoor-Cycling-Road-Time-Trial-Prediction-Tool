@@ -1,0 +1,264 @@
+:root {
+    --body-color: #373b3b;
+    --main-color: #03544e;
+    --main-color-light: #84aaa8;
+    --sidebar--color: #36362e;
+    --primary-color: #f3eb0c;
+    --primary-color-dark: #aca60b;
+    --primary-color-light: #ffffff;
+
+    --toggle-color: rgb(33, 33, 46);
+    --text-color: #707070;
+
+    --tran-03: all 0.2s ease;
+    --tran-03: all 0.2s ease;
+    --tran-04: all 0.2s ease;
+    --tran-05: all 0.2s ease;
+}
+
+body {
+    height: 100vh;
+    background-color: var(--body-color) !important;
+}
+
+.M_sidebar_header .icon{
+    display: flex;
+    position: fixed;
+    left: 165px;
+    top: 40px;
+    font-size: 50px;
+    color: white;
+    border-radius: 8px;
+}
+
+.M_sidebar_header .icon:hover{
+    color: var(--primary-color);
+}
+
+.M_sidebar .text {
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--text-color)
+}
+
+.M_sidebar .image {
+    display: flex;
+    align-items: center;
+}
+
+.M_sidebar .image-text img {
+    width: 120px;
+    top: 0;
+    left: 0;
+
+}
+
+.M_sidebar {
+    position: fixed;
+    height: 100%;
+    width: 250px;
+    top: 0;
+    left: 0;
+    padding: 12px 14px;
+    background: var(--sidebar--color);
+}
+
+.M_sidebar header {
+    position: relative;
+}
+
+.M_sidebar header .image-text {
+    display: flex;
+    align-items: center;
+}
+
+.M_sidebar li {
+    background: var(--primary-color-light);
+    height: 50px;
+    margin-top: 10px;
+    list-style: none;
+    display: flex;
+    align-items: center;
+    border-radius: 8px;
+}
+
+.M_sidebar li .icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 30px;
+    min-width: 60px;
+    color: #10514a;
+
+}
+
+.M_sidebar li .nav-link {
+    position: absolute;
+
+}
+
+.M_sidebar li .text {
+    color: var(--text-color);
+    transition: var(--tran-02);
+}
+
+.M_sidebar .M_search_box {
+    background: var(--primary-color-light);
+    position: relative;
+    border-radius: 8px;
+    width: 207px;
+
+}
+
+.M_search_box input {
+    height: 100%;
+    width: 90%;
+    outline: none;
+    border: none;
+    border-radius: 8px;
+    background: var(--primary-color-light);
+}
+
+.M_search_box .icon {
+    position: relative;
+    left: 17px;
+}
+
+.M_search_box .M_search_box-input {
+    position: relative;
+    left: 15px;
+    font-size: large;
+}
+
+.M_sidebar li a {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    border-radius: 8px;
+    transition: var(--tran-04);
+}
+
+.M_sidebar .nav-link:hover {
+    background: var(--primary-color);
+}
+
+.M_sidebar .nav-link:active {
+    background: var(--primary-color-dark);
+}
+
+
+.M_sidebar li a:hover .icon header .image-text .M_header_text {
+    display: flex;
+    flex-direction: M_column;
+}
+
+.M_header_text .name {
+    font-weight: 600;
+    font-size: large;
+    position: relative;
+    bottom: 30px;
+
+}
+
+.M_sidebar .nav-link {
+    position: relative;
+}
+
+.M_h_color {
+    margin: 10;
+    color: white;
+    background-color: currentColor;
+    border: 2;
+    opacity: 0.25;
+    size: "2";
+  }
+
+#M_nav_link_active{
+    position: relative;
+    background-color: #f3eb0c;
+}
+
+.M_column{
+    background-color: var(--sidebar--color);
+    border-radius: 8px;
+    min-height: 300px;
+    box-shadow: 1px 1px 12px;
+}
+
+.container-fluid {
+    width: auto !important;
+    margin-right: 10px !important;
+    margin-top: 200px !important;
+    margin-left: 260px !important;
+}
+
+.container-fluid .nav-link {
+    background-color: white;
+    min-height: 50px;
+    border-radius: 8px;
+    margin: 10px;
+    text-decoration: none;
+    
+}
+
+.container-fluid .text-center {
+    color: var(--primary-color);
+}
+
+.container-fluid .text {
+    color: var(--text-color);
+    text-decoration: none;
+    position: relative;
+    left: 15px;
+}
+
+.container-fluid .icon {
+    color: #10514a;
+    font-size: 30px;
+}
+
+.container-fluid li a{
+    text-decoration: none;
+    align-items: center;
+    display: flex;
+    border-radius: 8px;
+    left: 10px;
+    position: relative;
+}
+
+.container-fluid .nav-link:hover {
+    background: var(--primary-color);
+}
+
+.container-fluid .nav-link:active {
+    background-color: var(--primary-color-dark);
+}
+
+.container-fluid .profile_input {
+    background-color: white;
+    min-height: 50px;
+    border-radius: 8px;
+    outline: none;
+    border: none;
+    display: block;
+    position: relative;
+    min-width:90%;
+    margin-left: 10px;
+}
+
+.container-fluid .profile_input-input {
+    min-height: 50px;
+    border-radius: 8px;
+    margin: 10px;
+    outline: none;
+    border: none;   
+}
+
+.profile_text {
+    color:var(--primary-color);
+    margin: 10px;
+}
+
+
