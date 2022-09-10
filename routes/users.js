@@ -1,6 +1,11 @@
 var express = require("express");
 var router = express.Router();
 
+/* GET users listing. */
+router.get("/", function (req, res, next) {
+  res.send("User route work!");
+});
+
 /* POST request signing in user */
 /* Receives JSON object that contains username & password */
 router.post("/login", function (req, res, next) {
@@ -190,6 +195,120 @@ router.post("/checkAdmin", function (req, res, next) {
           } else {
             res.sendStatus(401); /* unsuccessful*/
           }
+        }
+      );
+    });
+  } else {
+    res.sendStatus(400); /* bad request */
+  }
+});
+
+/* POST request for updating a users password */
+router.post("/updatePassword", function (req, res, next) {
+  if (
+    "username" in req.body &&
+    "password" in req.body &&
+    "newPassword" in req.body
+  ) {
+    /* connect to database */
+    req.pool.getConnection(function (error, connection) {
+      if (error) {
+        console.log(error);
+        res.sendStatus(500);
+        return;
+      }
+      /* first query (update the users password) */
+      let query = `UPDATE users 
+                    SET password = SHA2(?, 244) 
+                    WHERE username = ? AND password = SHA2(?, 244);`;
+      connection.query(
+        query,
+        [req.body.newPassword, req.body.username, req.body.password],
+        function (error, rows, fields) {
+          if (error) {
+            console.log(error);
+            res.sendStatus(500);
+            return;
+          }
+          /* second query (verifying user is in database, confirming sign up) */
+          let query = `SELECT username, password 
+                        WHERE username = ?;`;
+          connection.query(
+            query,
+            [req.body.username],
+            function (error, rows, fields) {
+              connection.release(); /* release connection */
+              if (error) {
+                console.log(error);
+                res.sendStatus(500);
+                return;
+              }
+              if (rows.length > 0) {
+                req.session.user = rows[0]; /* setting session */
+                res.json(rows); /* sending back details */
+              } else {
+                res.sendStatus(401); /* unsuccessful */
+              }
+            }
+          );
+        }
+      );
+    });
+  } else {
+    res.sendStatus(400); /* bad request */
+  }
+});
+
+/* POST request for updating a users contact details */
+router.post("/updateContactDetails", function (req, res, next) {
+  if (
+    "username" in req.body &&
+    "password" in req.body &&
+    "email" in req.body &&
+    "phoneNum" in req.body
+  ) {
+    /* connect to database */
+    req.pool.getConnection(function (error, connection) {
+      if (error) {
+        console.log(error);
+        res.sendStatus(500);
+        return;
+      }
+      /* first query (update the users password) */
+      let query = `UPDATE users
+                SET email = ?,
+                    phoneNum = ?
+                WHERE username = ?;`;
+      connection.query(
+        query,
+        [req.body.username, req.body.email, req.body.phoneNum],
+        function (error, rows, fields) {
+          if (error) {
+            console.log(error);
+            res.sendStatus(500);
+            return;
+          }
+          /* second query (verifying user is in database, confirming sign up) */
+          let query = `SELECT username, email, phoneNum 
+                        WHERE username = ?;`;
+          connection.query(
+            query,
+            [req.body.username, req.body.email, req.body.phoneNum],
+            function (error, rows, fields) {
+              connection.release(); /* release connection */
+              if (error) {
+                console.log(error);
+                res.sendStatus(500);
+                return;
+              }
+              if (rows.length > 0) {
+                req.session.user = rows[0]; /* setting session */
+                res.json(rows); /* sending back details */
+              } else {
+                res.sendStatus(401); /* unsuccessful */
+              }
+            }
+          );
         }
       );
     });
