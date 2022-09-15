@@ -4,11 +4,11 @@ var http = require("http");
 var createError = require("http-errors");
 const path = require("path");
 const bodyParser = require("body-parser");
-const cookieParser = require("cookie-parser");
+// const cookieParser = require("cookie-parser");
 const cors = require("cors");
 // const jwt = require("express-jwt");
 // const jwksRsa = require("jwks-rsa");
-// const session = require("express-session");
+const session = require("express-session");
 const logger = require("morgan");
 const mysql = require("mysql");
 
@@ -45,21 +45,21 @@ app.use(bodyParser.json());
 // Cors middleware
 app.use(cors());
 app.use(express.urlencoded({ extended: false }));
-app.use(cookieParser());
+// app.use(cookieParser());
 app.use(logger("dev"));
 
 // Seting up the static directory
-app.use(express.static(path.join(__dirname, "dist")));
+app.use(express.static(path.join(__dirname, "dist"), {index: 'Dashboard.html'}));
 
-// // Cookie setup
-// app.use(
-//   session({
-//     secret: "szxdcfvgbhjnmkkjhgffghi",
-//     resave: false,
-//     saveUninitialized: true,
-//     cookie: { secure: false },
-//   })
-// );
+// Cookie setup
+app.use(
+  session({
+    secret: "szxdcfvgbhjnmkkjhgffghi",
+    resave: false,
+    saveUninitialized: true,
+    cookie: { secure: false },
+  })
+);
 
 // Security
 // // Create middleware to validate the JWT using express-jwt

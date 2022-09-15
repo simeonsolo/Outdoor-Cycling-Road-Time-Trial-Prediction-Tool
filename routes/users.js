@@ -32,8 +32,8 @@ router.post("/login", function (req, res, next) {
             return;
           }
           if (rows.length > 0) {
-            //req.session.user = rows[0]; /* setting session */
-            res.json(rows); /* sending back user details */
+            req.session.user = rows[0]; /* setting session */
+            res.json(rows[0]); /* sending back user details */
           } else {
             res.sendStatus(401); /* bad login */
           }
@@ -45,7 +45,7 @@ router.post("/login", function (req, res, next) {
   }
 });
 
-/* POST request for signing up and the signing in a user */
+/* POST request for signing up a user */
 /* Receives JSON object that contains username,password,firstName,lastName,email,phoneNum */
 router.post("/signup", function (req, res, next) {
   /* check if all necessary details are in body */
@@ -97,8 +97,7 @@ router.post("/signup", function (req, res, next) {
                 return;
               }
               if (rows.length > 0) {
-                //req.session.user = rows[0]; /* setting session */
-                res.json(rows); /* sending back details */
+                res.sendStatus(200);
               } else {
                 res.sendStatus(401); /* unsuccessful */
               }
@@ -110,6 +109,20 @@ router.post("/signup", function (req, res, next) {
   } else {
     res.sendStatus(400); /* bad request */
   }
+});
+
+router.use(function(req, res, next) {
+  if('user' in req.session){
+      next();
+  } else {
+      res.sendStatus(401);
+  }
+});
+
+/* GET request for logging out */
+router.get('/logout', function(req, res) {
+  req.session.destroy();
+  res.sendStatus(200);
 });
 
 /* JAVASCRIPT: POST request for making a user an admin */
@@ -205,8 +218,8 @@ router.post("/checkAdmin", function (req, res, next) {
 
 /* POST request for updating a users password */
 router.post("/updatePassword", function (req, res, next) {
+  user = req.session.user
   if (
-    "username" in req.body &&
     "password" in req.body &&
     "newPassword" in req.body
   ) {
@@ -217,42 +230,40 @@ router.post("/updatePassword", function (req, res, next) {
         res.sendStatus(500);
         return;
       }
-      /* first query (update the users password) */
-      let query = `UPDATE users 
-                    SET password = SHA2(?, 244) 
-                    WHERE username = ? AND password = SHA2(?, 244);`;
+      /* first query to check user info is correct */
+      let query = `SELECT * from users WHERE username = ? AND password = SHA2(?,224);`
       connection.query(
         query,
-        [req.body.newPassword, req.body.username, req.body.password],
+        [user.username, req.body.password],
         function (error, rows, fields) {
           if (error) {
             console.log(error);
             res.sendStatus(500);
             return;
+          }else if(rows.length <= 0){
+            res.sendStatus(404);
+            return;
+          }else{
+            /* second query (update the users password) */
+            query = `UPDATE users 
+            SET password = SHA2(?,224) 
+            WHERE username = ? AND password = SHA2(?,224);`;
+            connection.query(
+              query,
+              [req.body.newPassword, user.username, req.body.password],
+              function (error, rows, fields) {
+                if (error) {
+                  console.log(error);
+                  res.sendStatus(500);
+                  return;
+                }else{
+                  res.sendStatus(200);
+                }
+              }
+            );
           }
-          /* second query (verifying user is in database, confirming sign up) */
-          let query = `SELECT username, password 
-                        WHERE username = ?;`;
-          connection.query(
-            query,
-            [req.body.username],
-            function (error, rows, fields) {
-              connection.release(); /* release connection */
-              if (error) {
-                console.log(error);
-                res.sendStatus(500);
-                return;
-              }
-              if (rows.length > 0) {
-                req.session.user = rows[0]; /* setting session */
-                res.json(rows); /* sending back details */
-              } else {
-                res.sendStatus(401); /* unsuccessful */
-              }
-            }
-          );
-        }
-      );
+        });
+      
     });
   } else {
     res.sendStatus(400); /* bad request */

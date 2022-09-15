@@ -18,6 +18,23 @@ window.onload=function(){
             signup(Username, Password, FirstName, LastName, Email, Phone);
         }, false);
     }
+
+    if(document.getElementById("A_updatePasswordBtn")){
+        document.getElementById("A_updatePasswordBtn").addEventListener("click", function(){
+            passwordCurrent = document.getElementById("passwordCurrent").value;
+            passwordNew = document.getElementById("passwordNew").value;
+            passwordConfirm = document.getElementById("passwordConfirm").value;
+
+            if(passwordNew != passwordConfirm)
+            {
+                alert("Passwords don't match");
+            }
+            else
+            {
+                updatePassword(passwordNew, passwordCurrent);
+            }
+        })
+    }
 }
 
 
@@ -34,7 +51,8 @@ function login(Username, Password) {
     xhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
             /* login success */
-            response = JSON.parse(this.responseText); /* returns JSON object of users details */
+            //response = JSON.parse(this.responseText); /* returns JSON object of users details */
+            window.location.replace("/NavigationBar.html");
         }
         else if (this.readyState == 4 && this.status >= 400 && this.status < 500) {
             /* login fail */
@@ -67,7 +85,7 @@ function login(Username, Password) {
     xhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
             /* signup success */
-            response = JSON.parse(this.responseText); // returns JSON object of users details
+            window.location.replace("/Login.html");
         } else if (this.readyState == 4 && this.status >= 400) {
             /* signup fail */
             alert("Signup Unsuccessful"); // alert
@@ -131,11 +149,10 @@ function login(Username, Password) {
 
 /* FUNCTION FOR CHANGING A USERS PASSWORD */
 /* receives new password, username and old passwordas input */
-function updatePassword(NewPassword,Username,Password) {
+function updatePassword(NewPassword,Password) {
     /* obtain inputs */
     let user = {
         newPassword: NewPassword,
-        username: Username,
         password: Password
     }
     /* send POST request */
@@ -143,20 +160,20 @@ function updatePassword(NewPassword,Username,Password) {
     xhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
             /* success */
-            response = JSON.parse(this.responseText); // returns JSON object of users details
+            alert("Password Changed :)")
         } else if (this.readyState == 4 && this.status >= 400) {
             /* fail */
-            alert("Signup Unsuccessful"); // alert
+            alert("Update Unsuccessful"); // alert
         }
     };
-    xhttp.open("POST", "/updatePassword");
+    xhttp.open("POST", "users/updatePassword");
     xhttp.setRequestHeader("Content-type", "application/json");
     xhttp.send(JSON.stringify(user));
 }
 
 /* FUNCTION FOR CHANGING A USERS CONTACT DETAILS */
 /* receives new username, new email and new phone number as input */
-function updatePassword(Username,Email,PhoneNum) {
+function updateContact(Username,Email,PhoneNum) {
     /* obtain inputs */
     let user = {
         username: Username,
