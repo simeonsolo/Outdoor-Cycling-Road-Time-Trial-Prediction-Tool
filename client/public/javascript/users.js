@@ -35,6 +35,12 @@ window.onload=function(){
             }
         })
     }
+
+    if(document.getElementById("A_Logout_btn")){
+        document.getElementById("A_Logout_btn").addEventListener("click", function(){
+            logout();
+        });
+    }
 }
 
 
@@ -66,6 +72,27 @@ function login(Username, Password) {
     xhttp.open("POST", "/users/login", true);
     xhttp.setRequestHeader("Content-type", "application/json");
     xhttp.send(JSON.stringify(user));
+  }
+
+/* FUNCTION THAT LOGS OUT A USER */
+  function logout(){
+    let xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            /* login success */
+            window.location.replace("/Dashboard.html");
+        }
+        else if (this.readyState == 4 && this.status >= 400 && this.status < 500) {
+            /* logout fail */
+            alert("Session error"); /* alert */
+        }
+        else if (this.readyState == 4 && this.status >= 500) {
+            /* server error */
+            alert("Server Error"); /* alert */
+        }
+    };
+    xhttp.open("GET", "/users/logout", true);
+    xhttp.send();
   }
   
   /* FUNCTION FOR SIGNING UP USER & SIGNING IN USER */
