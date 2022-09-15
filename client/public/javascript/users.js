@@ -36,6 +36,15 @@ window.onload=function(){
         })
     }
 
+    if(document.getElementById("A_updateContactBtn")){
+        document.getElementById("A_updateContactBtn").addEventListener("click", function(){
+            email = document.getElementById("email").value;
+            phone = document.getElementById("number").value;
+
+            updateContact(email, phone);
+        });
+    }
+
     if(document.getElementById("A_Logout_btn")){
         document.getElementById("A_Logout_btn").addEventListener("click", function(){
             logout();
@@ -126,53 +135,6 @@ function login(Username, Password) {
     xhttp.setRequestHeader("Content-type", "application/json");
     xhttp.send(JSON.stringify(user));
   }
-  
-  /* FUNCTION FOR MAKING USER ADMIN */
-  /* receives username as input */
-  function makeAdmin(Username) {
-    /* obtain inputs */
-    let administrator = {
-        username: Username
-    }
-    /* send POST request */
-    let xhttp = new XMLHttpRequest();
-    xhttp.onreadystatechange = function() {
-        if (this.readyState == 4 && this.status == 200) {
-            /* success */
-            alert("Administrator created");
-        } else if (this.readyState == 4 && this.status >= 400) {
-            /* fail */
-            alert("Administrator creation failed");
-        }
-    };
-    xhttp.open("POST", "/makeAdmin");
-    xhttp.setRequestHeader("Content-type", "application/json");
-    xhttp.send(JSON.stringify(administrator));
-  }
-  
-  /* FUNCTION FOR CHECKING IF ADMIN IS USER */
-  /* receives username as input */
-  function checkAdmin(Username) {
-    /* obtain inputs */
-    let administrator = {
-        username: Username
-    }
-    /* send POST request */
-    let xhttp = new XMLHttpRequest();
-    xhttp.onreadystatechange = function() {
-        if (this.readyState == 4 && this.status == 200) {
-            /* success */
-            alert("User is administrator");
-        } else if (this.readyState == 4 && this.status >= 400) {
-            /* fail */
-            alert("User is not administrator");
-        }
-    };
-    xhttp.open("POST", "/checkAdmin");
-    xhttp.setRequestHeader("Content-type", "application/json");
-    xhttp.send(JSON.stringify(administrator));
-  } 
-
 
 /* FUNCTION FOR CHANGING A USERS PASSWORD */
 /* receives new password, username and old passwordas input */
@@ -200,10 +162,9 @@ function updatePassword(NewPassword,Password) {
 
 /* FUNCTION FOR CHANGING A USERS CONTACT DETAILS */
 /* receives new username, new email and new phone number as input */
-function updateContact(Username,Email,PhoneNum) {
+function updateContact(Email,PhoneNum) {
     /* obtain inputs */
     let user = {
-        username: Username,
         email: Email,
         phoneNum: PhoneNum
     }
@@ -212,13 +173,61 @@ function updateContact(Username,Email,PhoneNum) {
     xhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
             /* success */
-            response = JSON.parse(this.responseText); // returns JSON object of users details
+            alerty("Updated!")
         } else if (this.readyState == 4 && this.status >= 400) {
             /* fail */
-            alert("Signup Unsuccessful"); // alert
+            alert("Update Unsuccessful"); // alert
         }
     };
-    xhttp.open("POST", "/updateContactDetails");
+    xhttp.open("POST", "users/updateContactDetails");
     xhttp.setRequestHeader("Content-type", "application/json");
     xhttp.send(JSON.stringify(user));
 }
+
+
+
+//   /* FUNCTION FOR MAKING USER ADMIN */
+//   /* receives username as input */
+//   function makeAdmin(Username) {
+//     /* obtain inputs */
+//     let administrator = {
+//         username: Username
+//     }
+//     /* send POST request */
+//     let xhttp = new XMLHttpRequest();
+//     xhttp.onreadystatechange = function() {
+//         if (this.readyState == 4 && this.status == 200) {
+//             /* success */
+//             alert("Administrator created");
+//         } else if (this.readyState == 4 && this.status >= 400) {
+//             /* fail */
+//             alert("Administrator creation failed");
+//         }
+//     };
+//     xhttp.open("POST", "/makeAdmin");
+//     xhttp.setRequestHeader("Content-type", "application/json");
+//     xhttp.send(JSON.stringify(administrator));
+//   }
+  
+//   /* FUNCTION FOR CHECKING IF ADMIN IS USER */
+//   /* receives username as input */
+//   function checkAdmin(Username) {
+//     /* obtain inputs */
+//     let administrator = {
+//         username: Username
+//     }
+//     /* send POST request */
+//     let xhttp = new XMLHttpRequest();
+//     xhttp.onreadystatechange = function() {
+//         if (this.readyState == 4 && this.status == 200) {
+//             /* success */
+//             alert("User is administrator");
+//         } else if (this.readyState == 4 && this.status >= 400) {
+//             /* fail */
+//             alert("User is not administrator");
+//         }
+//     };
+//     xhttp.open("POST", "/checkAdmin");
+//     xhttp.setRequestHeader("Content-type", "application/json");
+//     xhttp.send(JSON.stringify(administrator));
+//  } 

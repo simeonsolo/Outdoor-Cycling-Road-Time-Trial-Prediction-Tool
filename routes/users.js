@@ -272,9 +272,8 @@ router.post("/updatePassword", function (req, res, next) {
 
 /* POST request for updating a users contact details */
 router.post("/updateContactDetails", function (req, res, next) {
+  user = req.session.user
   if (
-    "username" in req.body &&
-    "password" in req.body &&
     "email" in req.body &&
     "phoneNum" in req.body
   ) {
@@ -292,7 +291,7 @@ router.post("/updateContactDetails", function (req, res, next) {
                 WHERE username = ?;`;
       connection.query(
         query,
-        [req.body.username, req.body.email, req.body.phoneNum],
+        [req.body.email, req.body.phoneNum, user.username],
         function (error, rows, fields) {
           if (error) {
             console.log(error);
@@ -300,11 +299,12 @@ router.post("/updateContactDetails", function (req, res, next) {
             return;
           }
           /* second query (verifying user is in database, confirming sign up) */
-          let query = `SELECT username, email, phoneNum 
+          let query = `SELECT username,firstName,lastName,email,phoneNum 
+                        FROM users 
                         WHERE username = ?;`;
           connection.query(
             query,
-            [req.body.username, req.body.email, req.body.phoneNum],
+            [user.username],
             function (error, rows, fields) {
               connection.release(); /* release connection */
               if (error) {
