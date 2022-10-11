@@ -11,10 +11,25 @@ const cors = require("cors");
 const session = require("express-session");
 const logger = require("morgan");
 const mysql = require("mysql");
+const multer = require('multer');
+const fs = require('fs').promises;
+let gpxParser = require('gpxparser');
 
 // Routers declaration
 const indexRouter = require("./routes/index");
 const usersRouter = require("./routes/users");
+
+// multer init
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, 'courses');
+  },
+  filename: (req, file, cb) => {
+    const { originalname } = file;
+    cb(null, originalname);
+  }
+})
+const upload = multer({ storage });
 
 // MySQL Database connection pool
 var dbConnectionPool = mysql.createPool({
@@ -28,6 +43,11 @@ var dbConnectionPool = mysql.createPool({
 
 // Initialize the app
 const app = express();
+
+// GPX Upload
+app.post('/upload', upload.single('gpx'), (req,res) => {
+  return res.json({ status: 'OK' });
+});
 
 // View engine setup in Jade
 app.set("views", path.join(__dirname, "views"));
