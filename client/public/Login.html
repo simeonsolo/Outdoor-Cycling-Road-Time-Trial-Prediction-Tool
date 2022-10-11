@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>AusCycling</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="stylesheets/w3.css">
+  <link rel="icon" href="images/auscycling-logo.png">
+  <style>
+    /* Add padding to containers */
+    .container {
+      padding: 16px;
+      background-color: white;
+      width: 100%;
+    }
+
+    /* Full-width input fields */
+    input[type=text],
+    input[type=password] {
+      width: 100%;
+      padding: 15px;
+      margin: 5px 0 22px 0;
+      display: inline-block;
+      border: none;
+      background: #f1f1f1;
+    }
+
+    input[type=text]:focus,
+    input[type=password]:focus {
+      background-color: #ddd;
+      outline: none;
+    }
+
+    /* Overwrite default styles of hr */
+    hr {
+      border: 1px solid #f1f1f1;
+      margin-bottom: 25px;
+    }
+
+    /* Set a style for the submit button */
+    .registerbtn {
+      background-color: #04AA6D;
+      color: white;
+      padding: 16px 20px;
+      margin: 8px 0;
+      border: none;
+      cursor: pointer;
+      width: 100%;
+      opacity: 0.9;
+    }
+
+    .registerbtn:hover {
+      opacity: 1;
+    }
+
+    /* Add a blue text color to links */
+    a {
+      color: dodgerblue;
+    }
+
+    /* Set a grey background color and center the text of the "sign in" section */
+    .signin {
+      background-color: #f1f1f1;
+      text-align: center;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Navbar (sit on top) -->
+  <!-- Navbar (sit on top) -->
+  <div class="w3-top">
+    <div style="background-color: #36362e; color: #f1f1f1;" class="w3-bar w3-wide w3-padding w3-card">
+      <a style="padding-left: 200px;" href="Dashboard.html" class="w3-bar-item w3-button_special"><b><img
+            src="images/auscycling-logo.png" alt="icon" width="70" height="70"></a>
+      <!-- Float links to the right. Hide them on small screens -->
+
+      <div style="width: 22%; height: 100px; display: flex;align-items: center;font-size: 18px;font-weight:100"
+        class="w3-right w3-hide-small">
+        <a href="Login.html" class="w3-bar-item w3-button">Log In</a>
+        <a href="Signin.html" class="w3-bar-item w3-button"><b>Sign Up</b></a>
+      </div>
+    </div>
+  </div>
+  <!--border:2px solid #04AA6D-->
+  <!-- Header -->
+  <header class="w3-display-container w3-content w3-wide" style="max-width:1500px;position: relative;" id="home">
+    <div style="padding-top: 100px;">
+      <img style="position: absolute;" class="w3-image" src="images/LogIn/IMG_4279.jpg" alt="Architecture" width="1500">
+      <div style="position: absolute;display: flex; padding: 10%;">
+        <div style="width: 50%;">
+          <form action="/action_page.php">
+            <div class="container">
+              <h1>Log In</h1>
+              <p>Please fill in this form to log in to your account.</p>
+              <hr>
+
+              <label for="username"><b>Username</b></label>
+              <input type="text" placeholder="Enter Username" name="username" id="username" required>
+
+              <label for="psw"><b>Password</b></label>
+              <input type="password" placeholder="Enter Password" name="psw" id="psw" required>
+
+              <hr>
+
+              <button type="button" class="registerbtn" id='loginBut'>Log In</button>
+            </div>
+
+            <div class="container signin">
+              <p><a href="forgetpassword.html">Forgot your password?</a></p>
+            </div>
+          </form>
+        </div>
+      </div>
+
+    </div>
+  </header>
+
+
+  <!-- Page content -->
+  <div style="height:957px">
+
+
+
+
+    <!-- End page content -->
+  </div>
+
+
+  <!-- Footer -->
+  <footer style="z-index:-1 ;" class="w3-center w3-black w3-padding-16">
+    <p>Powered by <a href="Dashboard.html" title="W3.CSS" target="_blank" class="w3-hover-text-green">CYCOUT10</a></p>
+  </footer>
+
+  <script src="javascript/users.js"></script>
+</body>
+</html>
