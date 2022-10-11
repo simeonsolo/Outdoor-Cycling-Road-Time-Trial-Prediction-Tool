@@ -81,6 +81,7 @@ router.post("/signup", function (req, res, next) {
           if (error) {
             console.log(error);
             res.sendStatus(500);
+            connection.release(); /* release connection */
             return;
           }
           /* second query (signing in user) */
@@ -146,6 +147,7 @@ router.post("/makeAdmin", function (req, res, next) {
           if (error) {
             console.log(error);
             res.sendStatus(500);
+            connection.release(); /* release connection */
             return;
           }
           /* second query (verifying admin is in database, confirming addition) */
@@ -239,9 +241,11 @@ router.post("/updatePassword", function (req, res, next) {
           if (error) {
             console.log(error);
             res.sendStatus(500);
+            connection.release(); /* release connection */
             return;
           }else if(rows.length <= 0){
             res.sendStatus(404);
+            connection.release(); /* release connection */
             return;
           }else{
             /* second query (update the users password) */
@@ -252,6 +256,7 @@ router.post("/updatePassword", function (req, res, next) {
               query,
               [req.body.newPassword, user.username, req.body.password],
               function (error, rows, fields) {
+                connection.release(); /* release connection */
                 if (error) {
                   console.log(error);
                   res.sendStatus(500);
@@ -296,6 +301,7 @@ router.post("/updateContactDetails", function (req, res, next) {
           if (error) {
             console.log(error);
             res.sendStatus(500);
+            connection.release(); /* release connection */
             return;
           }
           /* second query (verifying user is in database, confirming sign up) */
