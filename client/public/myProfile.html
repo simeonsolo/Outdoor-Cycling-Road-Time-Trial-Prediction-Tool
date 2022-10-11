@@ -46,14 +46,14 @@
                     <input class="M_search_box-input" type="Search" placeholder="Search...">
                 </li>
 
-                <li class="nav-link" id="M_nav_link_active">
+                <li class="nav-link">
                     <a href="#">
                         <i class='bx bx-home-alt icon'></i>
                         <span class="text nav-text">Dashboard</span>
                     </a>
                 </li>
 
-                <li class="nav-link">
+                <li class="nav-link" id="M_nav_link_active">
                     <a href="#">
                         <i class='bx bxs-user icon'></i>
                         <span class="text nav-text">My Profile</span>
@@ -97,62 +97,30 @@
 
 
     <div class="container-fluid">
-        <div class="row gx-4 gy-4">
-            <div class="col-md-4">
-                <div class="M_column">
-                    <h3 class="text-center">
-                        My Bikes
-                    </h3>
-                    <li class="nav-link">
-                        <a href="#">
-                            <i class="fa-solid fa-bicycle icon"></i>
-                            <span class="text nav-text">Micheal's Bike</span>
-                        </a>
-                    </li>
-                    <li class="nav-link">
-                        <a href="#">
-                            <i class="fa-solid fa-bicycle icon"></i>
-                            <span class="text nav-text">John's Bike</span>
-                        </a>
-                    </li>
+        <div class="M_column">
+            <div class="row gx-4 gy-4">
+
+                <div class="col-md-6" id="mycontainer">
+                    <h3 class="profile_text">My Weight</h3>
+
+                    <input class="profile_input" id="M_my_weight_input" type="Search"
+                        placeholder="Your Body Weight (kg)">
+
+                    <h3 class="profile_text">My Extra Weight</h3>
+                    <input class="profile_input" id="M_my_weight_input" type="Search"
+                        placeholder="Your Carry Weight (kg)">
+
                 </div>
-            </div>
-            <div class="col-md-4">
-                <div class="M_column">
-                    <h3 class="text-center">
-                        My Courses
-                    </h3>
-                    <li class="nav-link">
-                        <a href="#">
-                            <i class="fa-solid fa-route icon"></i>
-                            <span class="text nav-text">Adelaide</span>
-                        </a>
-                    </li>
-                    <li class="nav-link">
-                        <a href="#">
-                            <i class="fa-solid fa-route icon"></i>
-                            <span class="text nav-text">Melborne</span>
-                        </a>
-                    </li>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="M_column">
-                    <h3 class="text-center">
-                        My Races
-                    </h3>
-                    <li class="nav-link">
-                        <a href="#">
-                            <i class="fa-solid fa-flag-checkered icon"></i>
-                            <span class="text nav-text">Olympics</span>
-                        </a>
-                    </li>
-                    <li class="nav-link">
-                        <a href="#">
-                            <i class="fa-solid fa-flag-checkered icon"></i>
-                            <span class="text nav-text">National Cup</span>
-                        </a>
-                    </li>
+                <div class="col-md-6">
+                    <h3 class="profile_text">Functional Threshold Power</h3>
+                    <input class="profile_input" id="M_my_weight_input" type="Search"
+                        placeholder="Average Power For One Hour (W)">
+
+                    <h3 class="profile_text">W Prime Power</h3>
+                    <input class="profile_input" id="M_my_weight_input" type="Search"
+                        placeholder="Your Anaerobic Capacity (J)">
+
+
                 </div>
             </div>
         </div>
@@ -164,6 +132,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"
         integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13"
         crossorigin="anonymous"></script>
+
 
 </body>
 
