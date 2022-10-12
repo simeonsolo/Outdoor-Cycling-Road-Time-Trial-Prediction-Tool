@@ -10,6 +10,10 @@
   },
   "dependencies": {
     "core-js": "^3.8.3",
+    "fs": "^0.0.1-security",
+    "gpx-parse": "^0.10.4",
+    "gpxparser": "^3.0.8",
+    "parse-gpx": "^2.1.0",
     "vitest": "0.23.1",
     "vue": "^3.2.13"
   },

@@ -13,7 +13,7 @@ const logger = require("morgan");
 const mysql = require("mysql");
 const multer = require('multer');
 const fs = require('fs').promises;
-let gpxParser = require('gpxparser');
+const gpxParser = require('gpxparser');
 
 // Routers declaration
 const indexRouter = require("./routes/index");
