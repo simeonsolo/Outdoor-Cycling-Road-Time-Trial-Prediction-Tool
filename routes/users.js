@@ -6,6 +6,32 @@ router.get("/", function (req, res, next) {
   res.send("User route work!");
 });
 
+router.post("/storeRaceInput", function(req,res,next) {
+  /* connect to database */
+  req.pool.getConnection(function (error, connection) {
+    if (error) {
+      console.log(error);
+      res.sendStatus(500);
+      return;
+    }
+    /* query */
+    let query =
+      "INSERT INTO races (raceName,courseName,massTotal,criticalPower,energyReserve,recoveryFunction,CDA12,CDA14,CDA16,climbingPosition,descendingPosition,tyreCrr,mechanicalEfficiency,wheelRadius,Dt,V0,windDirection,windSpeed,airDensity,steadyStatePowerInputPercentage,overThresholdPowerInputPercentage,descendPowerInputPercentage,slopeThresholdBelowSteadyStatePower,slopeThresholdAboveSteadyStatePower,slopeThresholdBelowDescendingPosition,slopeThresholdAboveDescendingPosition,deltaCDA,deltaWatts,deltaKG) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+    connection.query(
+      query,
+      [req.body.raceName, req.body.courseName,req.body.massTotal,req.body.criticalPower,req.body.energyReserve,req.body.recoveryFunction,req.body.CDA12,req.body.CDA14,req.body.CDA16,req.body.climbingPosition,req.body.descendingPosition,req.body.tyreCrr,req.body.mechanicalEfficiency,req.body.wheelRadius,req.body.Dt,req.body.V0,req.body.windDirection,req.body.windSpeed,req.body.airDensity,req.body.steadyStatePowerInputPercentage,req.body.overThresholdPowerInputPercentage,req.body.descendPowerInputPercentage,req.body.slopeThresholdBelowSteadyStatePower,req.body.slopeThresholdAboveSteadyStatePower,req.body.slopeThresholdBelowDescendingPosition,req.body.slopeThresholdAboveDescendingPosition,req.body.deltaCDA,req.body.deltaWatts,req.body.deltaKG],
+      function (error, rows, fields) {
+        connection.release(); /* release connection */
+        if (error) {
+          res.sendStatus(500);
+          return;
+        }
+        res.sendStatus(200); // success!
+      }
+    );
+  });
+});
+
 /* POST request signing in user */
 /* Receives JSON object that contains username & password */
 router.post("/login", function (req, res, next) {
@@ -124,98 +150,6 @@ router.use(function(req, res, next) {
 router.get('/logout', function(req, res) {
   req.session.destroy();
   res.sendStatus(200);
-});
-
-/* JAVASCRIPT: POST request for making a user an admin */
-/* Receives JSON object that contains username */
-router.post("/makeAdmin", function (req, res, next) {
-  /* check if username is in body */
-  if ("username" in req.body) {
-    /* connect to database */
-    req.pool.getConnection(function (error, connection) {
-      if (error) {
-        console.log(error);
-        res.sendStatus(500);
-        return;
-      }
-      /* query */
-      let query = "INSERT INTO administrators(user) VALUES(?);";
-      connection.query(
-        query,
-        [req.body.username],
-        function (error, rows, fields) {
-          if (error) {
-            console.log(error);
-            res.sendStatus(500);
-            connection.release(); /* release connection */
-            return;
-          }
-          /* second query (verifying admin is in database, confirming addition) */
-          let query = `SELECT user,admin_id
-                          FROM administrators
-                          WHERE user = ?;`;
-          connection.query(
-            query,
-            [req.body.username],
-            function (error, rows, fields) {
-              connection.release(); /* release connection */
-              if (error) {
-                console.log(error);
-                res.sendStatus(500);
-                return;
-              }
-              if (rows.length > 0) {
-                res.sendStatus(200); /* successful */
-              } else {
-                res.sendStatus(401); /* unsuccessful */
-              }
-            }
-          );
-        }
-      );
-    });
-  } else {
-    res.sendStatus(400); /* bad request */
-  }
-});
-
-/* POST request for checking if user is admin */
-/* Receives JSON object that conatains username */
-router.post("/checkAdmin", function (req, res, next) {
-  /* check if user is in body */
-  if ("username" in req.body) {
-    /* connect to database */
-    req.pool.getConnection(function (error, connection) {
-      if (error) {
-        console.log(error);
-        res.sendStatus(500);
-        return;
-      }
-      /* query */
-      let query = `SELECT user,admin_id
-                      FROM administrators
-                      WHERE user = ?;`;
-      connection.query(
-        query,
-        [req.body.username],
-        function (error, rows, fields) {
-          connection.release(); /* release connection */
-          if (error) {
-            console.log(error);
-            res.sendStatus(500);
-            return;
-          }
-          if (rows.length > 0) {
-            res.sendStatus(200); /* successful */
-          } else {
-            res.sendStatus(401); /* unsuccessful*/
-          }
-        }
-      );
-    });
-  } else {
-    res.sendStatus(400); /* bad request */
-  }
 });
 
 /* POST request for updating a users password */
