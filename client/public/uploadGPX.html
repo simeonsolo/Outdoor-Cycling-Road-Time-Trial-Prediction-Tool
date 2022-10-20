@@ -3,16 +3,27 @@
 
 <head>
     <title>FILE UPLOAD DEMO</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="stylesheets/Project.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
 </head>
 
-<body>
-    <h1>Upload GPX Tester</h1>
+<body style="background-color:#e6e6e6;">
+    <h1 style="color: #084cdf;">
+        <center>Upload GPX Tester</center>
+    </h1>
 
-    <form action="/upload" enctype="multipart/form-data" method="POST">
-        <span>Upload GPX File:</span>
-        <input type="file" name='gpx' /> <br>
-        <button>Submit</button>
-    </form>
+    <center>
+        <div class="A_GPX_div">
+            <i class="fa fa-upload fa-5x" , id="A_upload_icon"></i>
+            <form action="/upload" enctype="multipart/form-data" method="POST">
+                <!-- <span>Upload GPX File:</span> -->
+                <br>
+                <input id="A_input_GPX" type="file" name='gpx' /> <br>
+                <button id="A_GPX_btn">Upload</button>
+            </form>
+        </div>
+    </center>
 </body>
 
 </html>
