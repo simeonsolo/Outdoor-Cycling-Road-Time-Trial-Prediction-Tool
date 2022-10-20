@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang = "en">
+    <head>
+        <title>AusCycling</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="stylesheets/w3.css">
+        <link rel="icon" href="images/auscycling-logo.png">    
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+        <link rel="stylesheet" href="stylesheets/dashboard.css">
+        <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+        <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
+        <script src="https://kit.fontawesome.com/bd12e6c0cd.js" crossorigin="anonymous"></script>
+
+    </head>
+    <body>
+
+        <script type="module" src="/src/main.js"></script>
+        <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+        <script src="codeExcelFunctions.js"></script>
+
+        <div id="app">
+            <script type="module" src="/src/main.js"></script>
+            <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+           
+            
+            <nav class="M_sidebar" id="M_sidebar_small">
+                <header class="M_sidebar_header">
+                    <div class="image-text">
+                        <span class="image">
+                            <i class="fa-solid fa-bars icon_small" @click="toggleBox"></i>
+                        </span>
+                    </div>
+                </header>
+        
+                <div class="menu-bar">
+                    <div class="menu">
+                        <li class="M_search_box_small">
+                            <i class='bx bx-search-alt icon_small' id="m-search-icon"></i>
+                        </li>
+        
+                        <li class="nav-link" id="M_nav_link_active">
+                            <a href="dashboard.html">
+                                <i class='bx bx-home-alt icon_small'></i>
+                            </a>
+                        </li>
+        
+                        <li class="nav-link">
+                            <a href="myProfile.html">
+                                <i class='bx bxs-user icon_small'></i>
+                            </a>
+                        </li>
+        
+                        <li class="nav-link">
+                            <a href="#">
+                                <i class='bx bx-cycling icon_small'></i>
+                            </a>
+                        </li>
+        
+                        <li class="nav-link">
+                            <a href="#">
+                                <i class='bx bx-map icon_small'></i>
+                            </a>
+                        </li>
+        
+                        <li class="nav-link">
+                            <a href="#">
+                                <i class='bx bxs-flag-checkered icon_small'></i>
+                            </a>
+                        </li>
+                    </div>
+        
+                    <hr class="M_h_color mx-2">
+        
+                    <li class="nav-link">
+                        <a href="#">
+                            <i class='bx bx-exit icon_small'></i>
+                        </a>
+                    </li>
+        
+                </div>
+            </nav>
+        
+            <nav class="M_sidebar" id="M_sidebar_main" v-if="isVisible">
+                <header class="M_sidebar_header">
+                    <div class="image-text">
+                        <span class="image">
+                            <img src="images/auscycling-logo.png" alt="logo">
+                        </span>
+        
+                        <div class="text M_header_text">
+                            <span class="name"> CYCOUT10</span>
+        
+                        </div>
+                        <i class="fa-solid fa-bars icon" @click="toggleBox"></i>
+                    </div>
+        
+                </header>
+        
+                <div class="menu-bar">
+                    <div class="menu">
+                        <li class="M_search_box">
+                            <i class='bx bx-search-alt icon' id="m-search-icon"></i>
+                            <input class="M_search_box-input" type="Search" placeholder="Search...">
+                        </li>
+        
+                        <li class="nav-link" id="M_nav_link_active">
+                            <a href="dashboard.html">
+                                <i class='bx bx-home-alt icon'></i>
+                                <span class="text nav-text">Dashboard</span>
+                            </a>
+                        </li>
+        
+                        <li class="nav-link">
+                            <a href="myProfile.html">
+                                <i class='bx bxs-user icon'></i>
+                                <span class="text nav-text">My Profile</span>
+                            </a>
+                        </li>
+        
+                        <li class="nav-link">
+                            <a href="#">
+                                <i class='bx bx-cycling icon'></i>
+                                <span class="text nav-text">My Bikes</span>
+                            </a>
+                        </li>
+        
+                        <li class="nav-link">
+                            <a href="#">
+                                <i class='bx bx-map icon'></i>
+                                <span class="text nav-text">My Courses</span>
+                            </a>
+                        </li>
+        
+                        <li class="nav-link">
+                            <a href="#">
+                                <i class='bx bxs-flag-checkered icon'></i>
+                                <span class="text nav-text">My Races</span>
+                            </a>
+                        </li>
+                    </div>
+        
+                    <hr class="M_h_color mx-2">
+        
+                    <li class="nav-link">
+                        <a href="#">
+                            <i class='bx bx-exit icon'></i>
+                            <span class="text nav-text">Logout</span>
+                        </a>
+                    </li>
+        
+                </div>
+            </nav>
+        
+        
+            <div class="container-fluid" id="M_container" :class="{'dark':darkMode}">
+                <div class="M_column">
+                    <div class="row gx-4 gy-4">
+                        <h1 class="profile_text">Rider Details</h1>
+                        <div class="col-md-6" id="mycontainer">
+                            <h4 class="profile_text">Mass Rider</h4>
+                            <input class = "profile_input" type="text" id="mass_rider" value="0">
+                            <h4 class="profile_text">Mass Bike</h4>
+                            <input class = "profile_input" type="text" id="mass_bike" value="0">
+                            <h4 class="profile_text">Mass Other</h4>
+                            <input class = "profile_input" type="text" id="mass_other" value="0">
+                            <h4 class="profile_text">Mass Total</h4>
+                            <p id ="mass_total"></p>
+                            <button class="calculate-button" onclick="calc_mass_total()">Calculate Total Mass</button>
+                        </div>
+                        <div class="col-md-6" id="mycontainer">
+    
+                            <h4 class="profile_text">Functional Threshold Power</h4>
+                            <input class = "profile_input" type="text" id="ftp" value="0">
+                            <h4 class="profile_text">W Prime</h4>
+                            <input class = "profile_input" type="text" id="w'" value="0">
+                        </div>
+                    </div>
+                </div>
+            </div>
+    
+            <div class="container-fluid" id="M_container" :class="{'dark':darkMode}">
+                <div class="M_column">
+                    <div class="row gx-4 gy-4">
+                        <div class="col-md-6" id="mycontainer">
+                            <h1 class="profile_text">Power vs. slope info input</h1>
+                            <h4 class="profile_text">Slope threshold below which rider goes into descending position (%)</h4>
+                            <input class = "profile_input" type="text" id="slope_threshold_descend" value="0">
+                            
+                            
+                            <h4 class="profile_text">Slope threshold above which rider goes into climbing position (%)</h4>
+                            <input class = "profile_input" type="text" id="mass_bike" value="0">
+                            <button class="calculate-button" onclick="calc_slope_threshold()">Calculate Slope Thresholds</button>
+                            
+                        </div>
+                        <div class="col-md-6" id="mycontainer">
+                            <h1 class="profile_text">Position selection</h3>
+                            <h4 id ="slope_threshold_off" class="profile_text">Slope threshold below which rider comes off steady state power</h4>
+                            <input class = "profile_input" type="text" id="slope_threshold_steady_state_off" value="0">
+                            <h4 id ="slope_threshold_over" class="profile_text">Slope threshold below which rider goes over steady state power</h4>
+                            <input class = "profile_input" type="text" id="slope_threshold_steady_state_over" value="0">            
+                        </div>
+                    </div>
+                </div>
+            </div>
+    
+            <div class="container-fluid" id="M_container" :class="{'dark':darkMode}">
+                <div class="M_column">
+                    <div class="row gx-4 gy-4">
+                        <h1 class="profile_text">Roll Mechanic</h1>
+                        <div class="col-md-6" id="mycontainer">
+                            <h4 class="profile_text">Coefficient of rolling resistance (Crr)</h4>
+                            <input class = "profile_input" type="text" id="crr" value="0">
+                            
+                            
+                            <h4 class="profile_text">Mechanical Efficiency (%)</h4>
+                            <input class = "profile_input" type="text" id="mech_eff" value="0">
+    
+                            <h4 class="profile_text">Mol whl front</h4>
+                            <input class = "profile_input" type="text" id="mol_whl_front" value="0">
+                            
+                        </div>
+                        <div class="col-md-6" id="mycontainer">
+                            <h4 class="profile_text">Mol whl rear</h4>
+                            <input class = "profile_input" type="text" id="mol_whl_rear" value="0">
+                            <h4 class="profile_text">Wheel Radius</h4>
+                            <input class = "profile_input" type="text" id="wheel_radius" value="0">            
+                        </div>
+                    </div>
+                </div>
+            </div>
+    
+            <div class="container-fluid" id="M_container" :class="{'dark':darkMode}">
+                <div class="M_column">
+                    <div class="row gx-4 gy-4">
+                        <h1 class="profile_text">Environment</h1>
+                        <div class="col-md-6" id="mycontainer">
+                            <h4 class="profile_text">Wind direction</h4>
+                            <input class = "profile_input" type="text" id="wind_direction" value="0">
+                            <h4 id ="headwind_towards" class="profile_text">Headwind when travelling towards: 0 degrees </h4>
+                            <button class="calculate-button" onclick="calc_headwind_towards()">Calculate Headwind</button>
+                            <h4 class="profile_text">Air Density kg/m^3</h4>
+                            <input class = "profile_input" type="text" id="mol_whl_rear" value="0">
+                        </div>
+                        <div class="col-md-6" id="mycontainer">
+                            <h4 class="profile_text">Wind speed (std forecast @10m):</h4>
+                            <input class = "profile_input" type="text" id="wind_speed" value="0">
+                            <h4 id ="wind_speed_result" class="profile_text">m/sec  =  0 km/hr</h4>
+                            <button class="calculate-button" onclick="calc_wind_speed()">Calculate Wind Speed</button>
+    
+                        </div>
+                    </div>
+                </div>
+            </div>
+    
+            <div class="container-fluid" id="M_container" :class="{'dark':darkMode}">
+                <div class="M_column">
+                    <div class="row gx-4 gy-4">
+                        <h1 class="profile_text">CDA - Lookup Table</h1>
+                            <div class="col-md-6" id="mycontainer">
+                                <h4 class="profile_text">Outriggers increment</h4>
+                                <input class = "profile_input" type="text" id="outriggers_increment" value="0">
+                                <h4 class="profile_text">Supertuck increment</h4>
+                                <input class = "profile_input" type="text" id="supertuck_increment" value="0">
+                            </div>
+                            <div>
+                                <table style="width:100%">
+                                    <tr>
+                                        <th>CDA</th>
+                                        <th>Ref Value @14 m/sec</th>
+                                        <td>10</td>
+                                        <td>11</td>
+                                        <th>12</th>
+                                        <td>13</td>
+                                        <td>14</td>
+                                        <td>15</td>
+                                        <th>16</th>
+                                        <td>17</td>
+                                        <td>18</td>
+                                        <td>19</td>
+                                        <td>20</td>
+                                    </tr>
+                                    <tr>
+                                        <td>CDA Profiles</td>
+                                        <td></td>
+                                        <td>36.00</td>
+                                        <td>39.60</td>
+                                        <td>43.20</td>
+                                        <td>46.80</td>
+                                        <td>50.40</td>
+                                        <td>54.00</td>
+                                        <td>57.60</td>
+                                        <td>61.20</td>
+                                        <td>64.80</td>
+                                        <td>68.40</td>
+                                        <td>72.00</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Seated Aero Posistion</td>
+                                        <td>a</td>
+                                        <td id="t,1,10">0</td>
+                                        <td id="t,1,11">0</td>
+                                        <td id="t,1,12"><input type="text" id="t_1_12_input" value="0"></td>
+                                        <td id="t,1,13">0</td>
+                                        <td id="t,1,14"><input type="text" id="t_1_14_input" value="0"></td>
+                                        <td id="t,1,15">0</td>
+                                        <td id="t,1,16"><input type="text" id="t_1_16_input" value="0"></td>
+                                        <td id="t,1,17">0</td>
+                                        <td id="t,1,18">0</td>
+                                        <td id="t,1,19">0</td>
+                                        <td id="t,1,20">0</td>
+                                    </tr>
+                                    <tr>
+                                        <td>On Outriggers</td>
+                                        <td>b</td>
+                                        <td id="t,2,10">0</td>
+                                        <td id="t,2,11">0</td>
+                                        <td id="t,2,12">0</td>
+                                        <td id="t,2,13">0</td>
+                                        <td id="t,2,14">0</td>
+                                        <td id="t,2,15">0</td>
+                                        <td id="t,2,16">0</td>
+                                        <td id="t,2,17">0</td>
+                                        <td id="t,2,18">0</td>
+                                        <td id="t,2,19">0</td>
+                                        <td id="t,2,20">0</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Supertuck</td>
+                                        <td>c</td>
+                                        <td id="t,3,10">0</td>
+                                        <td id="t,3,11">0</td>
+                                        <td id="t,3,12">0</td>
+                                        <td id="t,3,13">0</td>
+                                        <td id="t,3,14">0</td>
+                                        <td id="t,3,15">0</td>
+                                        <td id="t,3,16">0</td>
+                                        <td id="t,3,17">0</td>
+                                        <td id="t,3,18">0</td>
+                                        <td id="t,3,19">0</td>
+                                        <td id="t,3,20">0</td>
+                                    </tr>
+                                </table>
+                                <button class="calculate-button" onclick="populate_cda_table()">Populate CDA Table</button>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+    
+            <div class="container-fluid" id="M_container" :class="{'dark':darkMode}">
+                <div class="M_column">
+                    <div class="row gx-4 gy-4">
+                        <h1 class="profile_text">Power Input % of CP (or FTP)</h1>
+                        <div class="col-md-6" id="mycontainer">
+                            <h4 class="profile_text" style="display: inline-block;">Steady state (%) - CP</h4>
+                            <h4 class="profile_text" id="steady_state" style="display:inline-block">0</h4>
+                            <input class = "profile_input" type="text" id="steady_state_percent" value="0">
+                            <button class="calculate-button" onclick="calc_power_input()">Calc Power input %</button>
+                        </div>
+                        <div class="col-md-6" id="mycontainer">
+    
+                            <h4 class="profile_text" style="display: inline-block;">Over Threshold (%) - CP</h4>
+                            <h4 class="profile_text" id="over_threshold" style="display:inline-block">0</h4>
+                            <input class = "profile_input" type="text" id="over_threshold_percent" value="0">
+    
+                            <h4 class="profile_text" style="display: inline-block;">Descend ave (%) - CP</h4>
+                            <h4 class="profile_text" id="descend_ave" style="display:inline-block">0</h4>
+                            <input class = "profile_input" type="text" id="descend_ave_percent" value="0">
+                        </div>
+                    </div>
+                </div>
+            </div>
+    
+            <div class="container-fluid" id="M_container" :class="{'dark':darkMode}">
+                <div class="M_column">
+                    <div class="row gx-4 gy-4">
+                        <h1 class="profile_text">Power vs. terrain</h1>
+                        <div class="col-md-6" id="mycontainer">
+                            <h4 class="profile_text" id = "descend_gradient" style="display: inline-block;">Descending: (Minimum of course)% to -0.000001% | Power: </h4>
+                            <h4 class="profile_text" id="descend_ave"></h4>
+                            <h4 class="profile_text" id = "flat_gradient" style="display: inline-block;">Flat, steady state: 0% to 0% | Power: </h4>
+                            <h4 class="profile_text" id="steady_state"></h4>
+    
+                            <button class="calculate-button" onclick="calc_gradients()">Calculate Gradients</button>
+                        </div>
+                        <div class="col-md-6" id="mycontainer">
+                            <h4 class="profile_text" id = "climb_gradient" style="display: inline-block;">Climbing > Threshold: 0.000001% to (Maximum of course)% | Power: </h4>
+                            <h4 class="profile_text" id="over_threshold"></h4>
+    
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"
+        integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"
+        integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13"
+        crossorigin="anonymous"></script>
+    <script>
+        let app = Vue.createApp({
+            data: function() {
+                return{
+                    isVisible: true,
+                    darkMode: false
+                    
+                }
+            },
+            methods: {
+                toggleBox(){
+                    this.isVisible = !this.isVisible
+                    this.darkMode = !this.darkMode
+                }
+            }
+        })
+
+        app.mount('#app')
+    </script>
+
+    </body>
+    </html>
