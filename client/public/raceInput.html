@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Race Inputs</title>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Please Enter Race Inputs</h1>
+        <p>Please fill in this form to create a race</p>
+        <hr>
+        <label for="raceName"><b>Race Name</b></label>
+        <input type="text" value="MyRace123" name="raceName" id="raceName">
+        <br>
+        <label for="courseName"><b>Course Name (must be already uploaded)</b></label>
+        <input type="text" value="ExampleCourse1" name="courseName" id="courseName">
+        <br>
+        <label for="massRider"><b>Mass (Rider)</b></label>
+        <input type="number" value="71" name="massRider" id="massRider">
+        <br>
+        <label for="massBike"><b>Mass (Bike)</b></label>
+        <input type="number" value="7" name="massBike" id="massBike">
+        <br>
+        <label for="massOther"><b>Mass (Other)</b></label>
+        <input type="number" value="1" name="massOther" id="massOther">
+        <br>
+        <label for="criticalPower"><b>Critical Power (W)</b></label>
+        <input type="number" value="430" name="criticalPower" id="criticalPower">
+        <br>
+        <label for="energyReserve"><b>Over Critical Power Energy Reserve (J)</b></label>
+        <input type="number" value="35000" name="energyReserve" id="energyReserve">
+        <br>
+        <label for="recoveryFunction"><b>Recovery Function (1 or 2)</b></label>
+        <input type="number" value="1" name="recoveryFunction" id="recoveryFunction">
+        <br>
+        <label for="CDA12"><b>CDA 12</b></label>
+        <input type="number" value="0.188" name="CDA12" id="CDA12">
+        <br>
+        <label for="CDA14"><b>CDA 14</b></label>
+        <input type="number" value="0.184" name="CDA14" id="CDA14">
+        <br>
+        <label for="CDA16"><b>CDA 16</b></label>
+        <input type="number" value="0.182" name="CDA16" id="CDA16">
+        <br>
+        <label for="climbingPosition"><b>Climbing Position CDA Increment (+ve)</b></label>
+        <input type="number" value="0.04" name="climbingPosition" id="climbingPosition">
+        <br>
+        <label for="descendingPosition"><b>Descending Position CDA Increment (-ve)</b></label>
+        <input type="number" value="-0.005" name="descendingPosition" id="descendingPosition">
+        <br>
+        <label for="tyreCrr"><b>Tyre Crr</b></label>
+        <input type="number" value="0.0025" name="tyreCrr" id="tyreCrr">
+        <br>
+        <label for="mechanicalEfficiency"><b>Mechanical Efficiency %</b></label>
+        <input type="number" value="98" name="mechanicalEfficiency" id="mechanicalEfficiency">
+        <br>
+        <label for="mol"><b>Mol</b></label>
+        <input type="number" value="0.08" name="mol" id="mol">
+        <br>
+        <label for="wheelRadius"><b>Wheel Radius</b></label>
+        <input type="number" value="0.335" name="wheelRadius" id="wheelRadius">
+        <br>
+        <label for="Dt"><b>Dt (seconds)</b></label>
+        <input type="number" value="0.05" name="Dt" id="Dt">
+        <br>
+        <label for="V0"><b>V0 (m/s)</b></label>
+        <input type="number" value="0.01" name="V0" id="V0">
+        <br>
+        <label for="windDirection"><b>Wind Direction (degrees)</b></label>
+        <input type="number" value="30" name="windDirection" id="windDirection">
+        <br>
+        <label for="windSpeed"><b>Wind Speed (m/s)</b></label>
+        <input type="number" value="2" name="windSpeed" id="windSpeed">
+        <br>
+        <label for="airDensity"><b>Air Density (kg/m^3)</b></label>
+        <input type="number" value="1.13" name="airDensity" id="airDensity">
+        <br>
+        <label for="steadyStatePowerInputPercentage"><b>Steady State Power Input %</b></label>
+        <input type="number" value="91" name="steadyStatePowerInputPercentage" id="steadyStatePowerInputPercentage">
+        <br>
+        <label for="overThresholdPowerInputPercentage"><b>Over Threshold Power Input %</b></label>
+        <input type="number" value="110" name="overThresholdPowerInputPercentage"
+            id="overThresholdPowerInputPercentage">
+        <br>
+        <label for="descendPowerInputPercentage"><b>Descend Power Input %</b></label>
+        <input type="number" value="2" name="descendPowerInputPercentage" id="descendPowerInputPercentage">
+        <br>
+        <label for="slopeThresholdBelowSteadyStatePower"><b>Slope Threshold Below Steady State Power %</b></label>
+        <input type="number" value="-1" name="slopeThresholdBelowSteadyStatePower"
+            id="slopeThresholdBelowSteadyStatePower">
+        <br>
+        <label for="slopeThresholdAboveSteadyStatePower"><b>Slope Threshold Above Steady State Power %</b></label>
+        <input type="number" value="7.5" name="slopeThresholdAboveSteadyStatePower"
+            id="slopeThresholdAboveSteadyStatePower">
+        <br>
+        <label for="slopeThresholdBelowDescendingPosition"><b>Slope Threshold Below Descending Position %</b></label>
+        <input type="number" value="-1" name="slopeThresholdBelowDescendingPosition"
+            id="slopeThresholdBelowDescendingPosition">
+        <br>
+        <label for="slopeThresholdAboveDescendingPosition"><b>Slope Threshold Above Descending Position %</b></label>
+        <input type="number" value="3" name="slopeThresholdAboveDescendingPosition"
+            id="slopeThresholdAboveDescendingPosition">
+        <br>
+        <label for="deltaCDA"><b>Delta CDA</b></label>
+        <input type="number" value="0" name="deltaCDA" id="deltaCDA">
+        <br>
+        <label for="deltaWatts"><b>Delta Watts</b></label>
+        <input type="number" value="-20" name="deltaWatts" id="deltaWatts">
+        <br>
+        <label for="deltaKG"><b>Delta KG</b></label>
+        <input type="number" value="0" name="deltaKG" id="deltaKG">
+        <br>
+
+        <button onclick="storeRaceInput()">Submit!</button>
+
+        <script src="javascript/raceInputs.js"></script>
+    </div>
+</body>
+
+</html>
