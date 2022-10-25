@@ -21,12 +21,26 @@ router.post("/storeRaceInput", function(req,res,next) {
       query,
       [req.body.raceName, req.body.courseName,req.body.massTotal,req.body.criticalPower,req.body.energyReserve,req.body.recoveryFunction,req.body.CDA12,req.body.CDA14,req.body.CDA16,req.body.climbingPosition,req.body.descendingPosition,req.body.tyreCrr,req.body.mechanicalEfficiency,req.body.wheelRadius,req.body.Dt,req.body.V0,req.body.windDirection,req.body.windSpeed,req.body.airDensity,req.body.steadyStatePowerInputPercentage,req.body.overThresholdPowerInputPercentage,req.body.descendPowerInputPercentage,req.body.slopeThresholdBelowSteadyStatePower,req.body.slopeThresholdAboveSteadyStatePower,req.body.slopeThresholdBelowDescendingPosition,req.body.slopeThresholdAboveDescendingPosition,req.body.deltaCDA,req.body.deltaWatts,req.body.deltaKG],
       function (error, rows, fields) {
-        connection.release(); /* release connection */
         if (error) {
           res.sendStatus(500);
           return;
         }
-        res.sendStatus(200); // success!
+        /* second query */
+          let query =
+          "SELECT * FROM races WHERE raceName = ?";
+        connection.query(query,[req.body.raceName], function (error, rows, fields) {
+            connection.release(); /* release connection */
+            if (error) {
+              res.sendStatus(500);
+              return;
+            }
+            if (rows.length > 0) {
+              res.send(rows[0]);
+            } else {
+              res.sendStatus(401); // does not exist
+            }
+          }
+        );
       }
     );
   });
