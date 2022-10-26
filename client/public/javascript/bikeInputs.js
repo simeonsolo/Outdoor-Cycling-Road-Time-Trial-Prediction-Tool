@@ -19,8 +19,7 @@ function storeBikesInput() {
     xhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
             /* call prediction model function */
-            let bike = JSON.parse(this.response);
-            predictionModel(bike);
+            alert("Import Success.");
         }
         else if (this.readyState == 4 && this.status >= 400 && this.status < 500) {
             /* fail */
