@@ -4,7 +4,7 @@ body {
   box-sizing: border-box;
 }
 
-#A_AusCycling_img{
+#A_AusCycling_img {
   margin: 0;
   float: left;
 }
@@ -27,8 +27,8 @@ body {
 }
 
 /* Moving Home to anywhere by changing the margin */
-#A_Home{
-    margin-left: 700px;
+#A_Home {
+  margin-left: 700px;
 }
 
 .A_dropdown {
@@ -47,7 +47,8 @@ body {
   margin: 0;
 }
 
-.A_navbar a:hover, .A_dropdown:hover .A_dropbtn {
+.A_navbar a:hover,
+.A_dropdown:hover .A_dropbtn {
   background-color: #f3eb0c;
   transition: all 0.3s ease 0s;
   color: #707070;
@@ -58,7 +59,7 @@ body {
   position: absolute;
   background-color: #f9f9f9;
   min-width: 160px;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
   z-index: 1;
 }
 
@@ -82,40 +83,39 @@ body {
 
 /* Logout button */
 
-#A_Logout_btn{
-    color: #f9f9f9;
-    font-size: 12px;
-    background-color: #36362e;
-    border: none;
-    border-radius: 50px;
-    cursor: pointer;
-    padding: 9px 25px;
-    margin-top: 6px;
-    margin-left: 50px;
+#A_Logout_btn {
+  color: #f9f9f9;
+  font-size: 12px;
+  background-color: #36362e;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  padding: 9px 25px;
+  margin-top: 6px;
+  margin-left: 50px;
 }
 
-#A_Logout_btn:hover{
-    background-color: #f3eb0c;
-    color: #707070;
-    transition: all 0.4s ease 0s
-
+#A_Logout_btn:hover {
+  background-color: #f3eb0c;
+  color: #707070;
+  transition: all 0.4s ease 0s
 }
 
-                                                        /* For updatePassword.html */
+/* For updatePassword.html */
 
-.A_UpdatePasswordDiv{
+.A_UpdatePasswordDiv {
   margin-top: 0;
   background-color: #e6e6e6;
   padding-top: 40px;
   padding-bottom: 80px;
 }
 
-#A_ChangePasswordPageTitle{
+#A_ChangePasswordPageTitle {
   margin-left: 100px;
   color: #282A35;
 }
 
-.A_HomeDiv a{
+.A_HomeDiv a {
   font-family: Helvetica;
   text-decoration: none;
   color: #282A35;
@@ -126,11 +126,12 @@ body {
   transition: all 0.3s ease 0s;
 }
 
-.A_heading_and_paragraph{
+.A_heading_and_paragraph {
   margin-left: 100px;
 }
 
-.A_container input[type=password], input[type=text]{
+.A_container input[type=password],
+input[type=text] {
   color: grey;
   border-radius: 4px;
   border: 1px solid #ccc;
@@ -140,11 +141,11 @@ body {
   width: 70%;
 }
 
-.A_container{
+.A_container {
   /*margin-left: 100px; */
 }
 
-#A_updatePasswordBtn{
+#A_updatePasswordBtn {
   color: #282A35;
   font-size: 15px;
   background-color: #f3eb0c;
@@ -157,78 +158,78 @@ body {
 
 }
 
-#A_updatePasswordBtn:hover{
-   background-color: #d9d20f;
-   transition: all 0.3s ease 0s;
+#A_updatePasswordBtn:hover {
+  background-color: #d9d20f;
+  transition: all 0.3s ease 0s;
 }
 
 /* Make 2 divs side by side */
 
-#A_wrapper{
+#A_wrapper {
   display: grid;
   grid-template-columns: 40% 1fr;
 }
 
-#A_leftDiv{
-  grid-column:1;
+#A_leftDiv {
+  grid-column: 1;
   overflow: hidden;
   /*border: 2px red solid; */
 }
 
-#A_rightDiv{
+#A_rightDiv {
   margin-top: 25px;
-  grid-column:2;
+  grid-column: 2;
   overflow: hidden;
 }
 
 /* Footer */
 
 .A_footer {
-   /*position: fixed; */
-   left:0;
-   bottom: 0;
-   width: 100%;
-   background-color: #36362e;
-   color: white;
+  /*position: fixed; */
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: #36362e;
+  color: white;
 
 }
 
-#A_AusCycling{
+#A_AusCycling {
   text-align: center;
   color: white;
 }
 
-#A_Privacy_TermsOfUse{
+#A_Privacy_TermsOfUse {
   margin-left: 30px;
 }
 
-#A_Privacy_TermsOfUse p{
+#A_Privacy_TermsOfUse p {
   font-size: 14px;
 }
 
 
-#A_Privacy_TermsOfUse a{
+#A_Privacy_TermsOfUse a {
   color: #f1f1f1;
   text-decoration: none;
   font-size: 14px;
   /*margin-left: 50px;*/
 }
 
-#A_Privacy_TermsOfUse a:hover{
+#A_Privacy_TermsOfUse a:hover {
   color: #f3eb0c;
   transition: all 0.3s ease 0s;
 }
 
-#A_icons{
+#A_icons {
   text-align: right;
   margin-right: 20px;
 }
 
-#A_icons h3{
+#A_icons h3 {
   margin-right: 80px;
 }
 
-#A_icons a{
+#A_icons a {
   margin: none;
   border-radius: 4px;
   color: #b1b1b1;
@@ -237,10 +238,6 @@ body {
   text-decoration: none;
 }
 
-#A_icons a:hover{
-  color: #f3eb0c ;
+#A_icons a:hover {
+  color: #f3eb0c;
 }
-
-
-
-
