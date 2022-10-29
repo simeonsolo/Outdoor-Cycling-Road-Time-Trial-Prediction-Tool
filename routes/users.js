@@ -46,6 +46,46 @@ router.post("/storeRaceInput", function(req,res,next) {
   });
 });
 
+router.post("/storeBikesInput", function(req,res,next) {
+  /* connect to database */
+  req.pool.getConnection(function (error, connection) {
+    if (error) {
+      console.log(error);
+      res.sendStatus(500);
+      return;
+    }
+    /* query */
+    let query =
+      "INSERT INTO bikes (bikeName,bikeWeight,frontWheelType,frontWheelWidth,rearWheelType,rearWheelWidth,helmetType,rollingAssistance,CdA_Racing,CdA_Climbing) VALUES(?,?,?,?,?,?,?,?,?,?)";
+    connection.query(
+      query,
+      [req.body._bikeName, req.body._bikeWeight,req.body._frontWheelType,req.body._frontWheelWidth,req.body._rearWheelType,req.body._rearWheelWidth,req.body._helmetType,req.body._rollingAssistance,req.body._CdA_Racing,req.body._CdA_Climbing],
+      function (error, rows, fields) {
+        if (error) {
+          res.sendStatus(500);
+          return;
+        }
+        /* second query */
+          let query =
+          "SELECT * FROM bikes WHERE bikeName = ?";
+        connection.query(query,[req.body.bikeName], function (error, rows, fields) {
+            connection.release(); /* release connection */
+            if (error) {
+              res.sendStatus(500);
+              return;
+            }
+            if (rows.length > 0) {
+              res.send(rows[0]);
+            } else {
+              res.sendStatus(401); // does not exist
+            }
+          }
+        );
+      }
+    );
+  });
+});
+
 /* POST request signing in user */
 /* Receives JSON object that contains username & password */
 router.post("/login", function (req, res, next) {
