@@ -1,37 +1,38 @@
 <!DOCTYPE html>
-<html lang = "en">
-    <head>
-        <title>Navigation Bar</title>
-        <meta charset="UTF-8">
-        <link rel ="stylesheet" href="stylesheets/Project.css">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    </head>
-    <body>
-        <!-- Navigation bar -->
-        <div class="A_navbar">
-            <img src="images/auscycling-logo.png" id = "A_AusCycling_img" alt="AusCycling" width="47" height="47">
-            <a href="#home" id = "A_Home">HOME</a>
-            <a href="#news">ABOUT US</a>
-            <a href="#news">FAQS</a>
-            <a href="#news">DASHBOARD</a>
-            <div class="A_dropdown">
-                <button class="A_dropbtn">MY ACCOUNT
-                    <i class="fa fa-caret-down"></i>
-                </button>
-                <div class="A_dropdown-content">
-                    <a href="updateContactDetails.html">Update contact details</a>
-                    <a href="updatePassword.html">Update password</a>
-                </div>
+<html lang="en">
+
+<head>
+    <title>Navigation Bar</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="stylesheets/Project.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body>
+    <!-- Navigation bar -->
+    <div class="A_navbar">
+        <img src="images/auscycling-logo.png" id="A_AusCycling_img" alt="AusCycling" width="47" height="47">
+        <a href="uploadGPX.html" id="A_Home">UPLOAD A COURSE</a>
+        <a href="raceInput.html">CREATE A RACE</a>
+        <div class="A_dropdown">
+            <button class="A_dropbtn">MY ACCOUNT
+                <i class="fa fa-caret-down"></i>
+            </button>
+            <div class="A_dropdown-content">
+                <a href="updateContactDetails.html">Update contact details</a>
+                <a href="updatePassword.html">Update password</a>
             </div>
+        </div>
         <!-- <div class = "logoutDiv">
             <a id = "logout" href = "#"><button id = "Logout_btn">Log Out</button></a>
         </div>
         -->
         <form>
-            <input type="button"  id = "A_Logout_btn" value="Log Out" />
+            <input type="button" id="A_Logout_btn" value="Log Out" />
         </form>
 
-        </div>
-        <script src="javascript/users.js"></script>
-    </body>
+    </div>
+    <script src="javascript/users.js"></script>
+</body>
+
 </html>

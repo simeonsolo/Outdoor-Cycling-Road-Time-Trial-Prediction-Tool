@@ -2,28 +2,53 @@
 <html>
 
 <head>
-    <title>FILE UPLOAD DEMO</title>
+    <title>Upload a Course</title>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="stylesheets/Project.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
 </head>
 
-<body style="background-color:#e6e6e6;">
-    <h1 style="color: #084cdf;">
-        <center>Upload GPX Tester</center>
-    </h1>
-
-    <center>
-        <div class="A_GPX_div">
-            <i class="fa fa-upload fa-5x" , id="A_upload_icon"></i>
-            <form action="/upload" enctype="multipart/form-data" method="POST">
-                <!-- <span>Upload GPX File:</span> -->
-                <br>
-                <input id="A_input_GPX" type="file" name='gpx' /> <br>
-                <button id="A_GPX_btn">Upload</button>
-            </form>
+<body>
+    <div class="A_navbar">
+        <img src="images/auscycling-logo.png" id="A_AusCycling_img" alt="AusCycling" width="47" height="47">
+        <a href="home.html" id="A_Home">HOME</a>
+        <a href="uploadGPX.html">UPLOAD A COURSE</a>
+        <a href="raceInput.html">CREATE A RACE</a>
+        <div class="A_dropdown">
+            <button class="A_dropbtn">MY ACCOUNT
+                <i class="fa fa-caret-down"></i>
+            </button>
+            <div class="A_dropdown-content">
+                <a href="updateContactDetails.html">Update contact details</a>
+                <a href="updatePassword.html">Update password</a>
+            </div>
         </div>
-    </center>
+        <!-- <div class = "logoutDiv">
+        <a id = "logout" href = "#"><button id = "Logout_btn">Log Out</button></a>
+    </div>
+    -->
+        <form>
+            <input type="button" id="A_Logout_btn" value="Log Out" />
+        </form>
+
+    </div>
+    <div style="background-color:#e6e6e6;">
+        <h1 style="color: #084cdf;">
+            <center>Upload GPX Tester</center>
+        </h1>
+
+        <center>
+            <div class="A_GPX_div">
+                <i class="fa fa-upload fa-5x" , id="A_upload_icon"></i>
+                <form action="/upload" enctype="multipart/form-data" method="POST">
+                    <!-- <span>Upload GPX File:</span> -->
+                    <br>
+                    <input id="A_input_GPX" type="file" name='gpx' /> <br>
+                    <button id="A_GPX_btn">Upload</button>
+                </form>
+            </div>
+        </center>
+    </div>
 </body>
 
 </html>

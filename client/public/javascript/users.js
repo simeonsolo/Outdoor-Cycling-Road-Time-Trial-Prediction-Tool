@@ -67,7 +67,7 @@ function login(Username, Password) {
         if (this.readyState == 4 && this.status == 200) {
             /* login success */
             //response = JSON.parse(this.responseText); /* returns JSON object of users details */
-            window.location.replace("/NavigationBar.html");
+            window.location.replace("/home.html");
         }
         else if (this.readyState == 4 && this.status >= 400 && this.status < 500) {
             /* login fail */

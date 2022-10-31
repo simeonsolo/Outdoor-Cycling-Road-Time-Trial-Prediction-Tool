@@ -4,189 +4,218 @@
 <head>
     <title>Race Inputs</title>
     <script src="javascript/raceInputs.js"></script>
+    <script src="javascript/users.js"></script>
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <link rel="stylesheet" href="stylesheets/Project.css">
     <link rel="stylesheet" href="stylesheets/raceInputs.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
 </head>
 
 <body>
-    <div id="A_label_color">
-        <h1>Please press these 2 buttons in order</h1>
-        <h3>(for some reason it only works like this)</h3>
-        <button onclick="getGPXDetails();">GPX Details part 1</button>
-        <button onclick="otherCalcs();">GPX details part 2</button>
-        <p id="getLat">Lat</p>
-        <p id="getLon">Lon</p>
-        <p id="getEle">Ele</p>
-        <p id="getDist">Dist</p>
-        <p id="getSlope">Slope</p>
-        <p id="getBearingRad">BrngRad</p>
-        <p id="getBearingDeg">BrngDeg</p>
-
-        <!--<button onclick="testConsoleResponse();">Show contents of test.txt</button>-->
-        <h3 id="viewtext">Predicted time:?????</h3>
+    <div class="A_navbar">
+        <img src="images/auscycling-logo.png" id="A_AusCycling_img" alt="AusCycling" width="47" height="47">
+        <a href="home.html" id="A_Home">HOME</a>
+        <a href="uploadGPX.html">UPLOAD A COURSE</a>
+        <a href="raceInput.html">CREATE A RACE</a>
+        <div class="A_dropdown">
+            <button class="A_dropbtn">MY ACCOUNT
+                <i class="fa fa-caret-down"></i>
+            </button>
+            <div class="A_dropdown-content">
+                <a href="updateContactDetails.html">Update contact details</a>
+                <a href="updatePassword.html">Update password</a>
+            </div>
+        </div>
+        <!-- <div class = "logoutDiv">
+            <a id = "logout" href = "#"><button id = "Logout_btn">Log Out</button></a>
+        </div>
+        -->
+        <form>
+            <input type="button" id="A_Logout_btn" value="Log Out" />
+        </form>
 
     </div>
-    <div class="container" id="A_label_color">
-        <center>
-            <h1>Please Enter Race Inputs</h1>
-            <p style="color:white;">Please fill in this form to create a race</p>
-        </center>
-        <hr>
-        <div id="A_firstbox">
-            <label for="raceName"><b>Race Name</b></label>
-            <br>
-            <input type="text" value="MyRace123" name="raceName" id="raceName">
-            <br>
-            <label for="courseName"><b>Course Name (must be already uploaded)</b></label>
-            <br>
-            <input type="text" value="ExampleCourse1" name="courseName" id="courseName">
-            <br>
-            <label for="massRider"><b>Mass (Rider)</b></label>
-            <br>
-            <input type="number" value="71" name="massRider" id="massRider">
-            <br>
-            <label for="massBike"><b>Mass (Bike)</b></label>
-            <br>
-            <input type="number" value="7" name="massBike" id="massBike">
-            <br>
-            <label for="massOther"><b>Mass (Other)</b></label>
-            <br>
-            <input type="number" value="1" name="massOther" id="massOther">
-            <br>
-            <label for="criticalPower"><b>Critical Power (W)</b></label>
-            <br>
-            <input type="number" value="430" name="criticalPower" id="criticalPower">
-            <br>
-            <label for="energyReserve"><b>Over Critical Power Energy Reserve (J)</b></label>
-            <br>
-            <input type="number" value="35000" name="energyReserve" id="energyReserve">
-            <br>
-            <label for="recoveryFunction"><b>Recovery Function (1 or 2)</b></label>
-            <br>
-            <input type="number" value="1" name="recoveryFunction" id="recoveryFunction">
-            <br>
-        </div>
-        <div id="A_secondbox">
-            <label for="CDA12"><b>CDA 12</b></label>
-            <br>
-            <input type="number" value="0.188" name="CDA12" id="CDA12">
-            <br>
-            <label for="CDA14"><b>CDA 14</b></label>
-            <br>
-            <input type="number" value="0.184" name="CDA14" id="CDA14">
-            <br>
-            <label for="CDA16"><b>CDA 16</b></label>
-            <br>
-            <input type="number" value="0.182" name="CDA16" id="CDA16">
-            <br>
-            <label for="climbingPosition"><b>Climbing Position CDA Increment (+ve)</b></label>
-            <br>
-            <input type="number" value="0.04" name="climbingPosition" id="climbingPosition">
-            <br>
-            <label for="descendingPosition"><b>Descending Position CDA Increment (-ve)</b></label>
-            <br>
-            <input type="number" value="-0.005" name="descendingPosition" id="descendingPosition">
-            <br>
-            <label for="tyreCrr"><b>Tyre Crr</b></label>
-            <br>
-            <input type="number" value="0.0025" name="tyreCrr" id="tyreCrr">
-            <br>
-            <label for="mechanicalEfficiency"><b>Mechanical Efficiency %</b></label>
-            <br>
-            <input type="number" value="98" name="mechanicalEfficiency" id="mechanicalEfficiency">
-            <br>
-            <label for="mol"><b>Mol</b></label>
-            <br>
-            <input type="number" value="0.08" name="mol" id="mol">
-            <br>
-        </div>
-        <div id="A_thirdbox">
-            <label for="wheelRadius"><b>Wheel Radius</b></label>
-            <br>
-            <input type="number" value="0.335" name="wheelRadius" id="wheelRadius">
-            <br>
-            <label for="Dt"><b>Dt (seconds)</b></label>
-            <br>
-            <input type="number" value="0.5" name="Dt" id="Dt">
-            <br>
-            <label for="V0"><b>V0 (m/s)</b></label>
-            <br>
-            <input type="number" value="0.01" name="V0" id="V0">
-            <br>
-            <label for="windDirection"><b>Wind Direction (degrees)</b></label>
-            <br>
-            <input type="number" value="30" name="windDirection" id="windDirection">
-            <br>
-            <label for="windSpeed"><b>Wind Speed (m/s)</b></label>
-            <br>
-            <input type="number" value="2" name="windSpeed" id="windSpeed">
-            <br>
-            <label for="airDensity"><b>Air Density (kg/m^3)</b></label>
-            <br>
-            <input type="number" value="1.13" name="airDensity" id="airDensity">
-            <br>
-            <label for="steadyStatePowerInputPercentage"><b>Steady State Power Input %</b></label>
-            <br>
-            <input type="number" value="91" name="steadyStatePowerInputPercentage" id="steadyStatePowerInputPercentage">
-            <br>
-            <label for="overThresholdPowerInputPercentage"><b>Over Threshold Power Input %</b></label>
-            <br>
-            <input type="number" value="110" name="overThresholdPowerInputPercentage"
-                id="overThresholdPowerInputPercentage">
-            <br>
-        </div>
-        <div id="A_fourthbox">
-            <label for="descendPowerInputPercentage"><b>Descend Power Input %</b></label>
-            <br>
-            <input type="number" value="2" name="descendPowerInputPercentage" id="descendPowerInputPercentage">
-            <br>
-            <label for="slopeThresholdBelowSteadyStatePower"><b>Slope Threshold Below Steady State Power %</b></label>
-            <br>
-            <input type="number" value="-1" name="slopeThresholdBelowSteadyStatePower"
-                id="slopeThresholdBelowSteadyStatePower">
-            <br>
-            <label for="slopeThresholdAboveSteadyStatePower"><b>Slope Threshold Above Steady State Power %</b></label>
-            <br>
-            <input type="number" value="7.5" name="slopeThresholdAboveSteadyStatePower"
-                id="slopeThresholdAboveSteadyStatePower">
-            <br>
-            <label for="slopeThresholdBelowDescendingPosition"><b>Slope Threshold Below Descending Position
-                    %</b></label>
-            <br>
-            <input type="number" value="-1" name="slopeThresholdBelowDescendingPosition"
-                id="slopeThresholdBelowDescendingPosition">
-            <br>
-            <label for="slopeThresholdAboveDescendingPosition"><b>Slope Threshold Above Descending Position
-                    %</b></label>
-            <br>
-            <input type="number" value="3" name="slopeThresholdAboveDescendingPosition"
-                id="slopeThresholdAboveDescendingPosition">
-            <br>
-            <label for="deltaCDA"><b>Delta CDA</b></label>
-            <br>
-            <input type="number" value="0" name="deltaCDA" id="deltaCDA">
-            <br>
-            <label for="deltaWatts"><b>Delta Watts</b></label>
-            <br>
-            <input type="number" value="-20" name="deltaWatts" id="deltaWatts">
-            <br>
-            <label for="deltaKG"><b>Delta KG</b></label>
-            <br>
-            <input type="number" value="0" name="deltaKG" id="deltaKG">
-            <br>
-        </div>
-        <center>
-            <button onclick="storeRaceInput()" id="A_SubmitBtn">Submit</button>
-        </center>
+    <div>
+        <div id="A_label_color">
+            <h1>Please press these 2 buttons in order</h1>
+            <h3>(for some reason it only works like this)</h3>
+            <button onclick="getGPXDetails();">GPX Details part 1</button>
+            <button onclick="otherCalcs();">GPX details part 2</button>
+            <p id="getLat">Lat</p>
+            <p id="getLon">Lon</p>
+            <p id="getEle">Ele</p>
+            <p id="getDist">Dist</p>
+            <p id="getSlope">Slope</p>
+            <p id="getBearingRad">BrngRad</p>
+            <p id="getBearingDeg">BrngDeg</p>
 
+            <!--<button onclick="testConsoleResponse();">Show contents of test.txt</button>-->
+            <h3 id="viewtext">Predicted time:?????</h3>
+
+        </div>
+        <div class="container" id="A_label_color">
+            <center>
+                <h1>Please Enter Race Inputs</h1>
+                <p style="color:white;">Please fill in this form to create a race</p>
+            </center>
+            <hr>
+            <div id="A_firstbox">
+                <label for="raceName"><b>Race Name</b></label>
+                <br>
+                <input type="text" value="MyRace123" name="raceName" id="raceName">
+                <br>
+                <label for="courseName"><b>Course Name (must be already uploaded)</b></label>
+                <br>
+                <input type="text" value="ExampleCourse1" name="courseName" id="courseName">
+                <br>
+                <label for="massRider"><b>Mass (Rider)</b></label>
+                <br>
+                <input type="number" value="71" name="massRider" id="massRider">
+                <br>
+                <label for="massBike"><b>Mass (Bike)</b></label>
+                <br>
+                <input type="number" value="7" name="massBike" id="massBike">
+                <br>
+                <label for="massOther"><b>Mass (Other)</b></label>
+                <br>
+                <input type="number" value="1" name="massOther" id="massOther">
+                <br>
+                <label for="criticalPower"><b>Critical Power (W)</b></label>
+                <br>
+                <input type="number" value="430" name="criticalPower" id="criticalPower">
+                <br>
+                <label for="energyReserve"><b>Over Critical Power Energy Reserve (J)</b></label>
+                <br>
+                <input type="number" value="35000" name="energyReserve" id="energyReserve">
+                <br>
+                <label for="recoveryFunction"><b>Recovery Function (1 or 2)</b></label>
+                <br>
+                <input type="number" value="1" name="recoveryFunction" id="recoveryFunction">
+                <br>
+            </div>
+            <div id="A_secondbox">
+                <label for="CDA12"><b>CDA 12</b></label>
+                <br>
+                <input type="number" value="0.188" name="CDA12" id="CDA12">
+                <br>
+                <label for="CDA14"><b>CDA 14</b></label>
+                <br>
+                <input type="number" value="0.184" name="CDA14" id="CDA14">
+                <br>
+                <label for="CDA16"><b>CDA 16</b></label>
+                <br>
+                <input type="number" value="0.182" name="CDA16" id="CDA16">
+                <br>
+                <label for="climbingPosition"><b>Climbing Position CDA Increment (+ve)</b></label>
+                <br>
+                <input type="number" value="0.04" name="climbingPosition" id="climbingPosition">
+                <br>
+                <label for="descendingPosition"><b>Descending Position CDA Increment (-ve)</b></label>
+                <br>
+                <input type="number" value="-0.005" name="descendingPosition" id="descendingPosition">
+                <br>
+                <label for="tyreCrr"><b>Tyre Crr</b></label>
+                <br>
+                <input type="number" value="0.0025" name="tyreCrr" id="tyreCrr">
+                <br>
+                <label for="mechanicalEfficiency"><b>Mechanical Efficiency %</b></label>
+                <br>
+                <input type="number" value="98" name="mechanicalEfficiency" id="mechanicalEfficiency">
+                <br>
+                <label for="mol"><b>Mol</b></label>
+                <br>
+                <input type="number" value="0.08" name="mol" id="mol">
+                <br>
+            </div>
+            <div id="A_thirdbox">
+                <label for="wheelRadius"><b>Wheel Radius</b></label>
+                <br>
+                <input type="number" value="0.335" name="wheelRadius" id="wheelRadius">
+                <br>
+                <label for="Dt"><b>Dt (seconds)</b></label>
+                <br>
+                <input type="number" value="0.5" name="Dt" id="Dt">
+                <br>
+                <label for="V0"><b>V0 (m/s)</b></label>
+                <br>
+                <input type="number" value="0.01" name="V0" id="V0">
+                <br>
+                <label for="windDirection"><b>Wind Direction (degrees)</b></label>
+                <br>
+                <input type="number" value="30" name="windDirection" id="windDirection">
+                <br>
+                <label for="windSpeed"><b>Wind Speed (m/s)</b></label>
+                <br>
+                <input type="number" value="2" name="windSpeed" id="windSpeed">
+                <br>
+                <label for="airDensity"><b>Air Density (kg/m^3)</b></label>
+                <br>
+                <input type="number" value="1.13" name="airDensity" id="airDensity">
+                <br>
+                <label for="steadyStatePowerInputPercentage"><b>Steady State Power Input %</b></label>
+                <br>
+                <input type="number" value="91" name="steadyStatePowerInputPercentage"
+                    id="steadyStatePowerInputPercentage">
+                <br>
+                <label for="overThresholdPowerInputPercentage"><b>Over Threshold Power Input %</b></label>
+                <br>
+                <input type="number" value="110" name="overThresholdPowerInputPercentage"
+                    id="overThresholdPowerInputPercentage">
+                <br>
+            </div>
+            <div id="A_fourthbox">
+                <label for="descendPowerInputPercentage"><b>Descend Power Input %</b></label>
+                <br>
+                <input type="number" value="2" name="descendPowerInputPercentage" id="descendPowerInputPercentage">
+                <br>
+                <label for="slopeThresholdBelowSteadyStatePower"><b>Slope Threshold Below Steady State Power
+                        %</b></label>
+                <br>
+                <input type="number" value="-1" name="slopeThresholdBelowSteadyStatePower"
+                    id="slopeThresholdBelowSteadyStatePower">
+                <br>
+                <label for="slopeThresholdAboveSteadyStatePower"><b>Slope Threshold Above Steady State Power
+                        %</b></label>
+                <br>
+                <input type="number" value="7.5" name="slopeThresholdAboveSteadyStatePower"
+                    id="slopeThresholdAboveSteadyStatePower">
+                <br>
+                <label for="slopeThresholdBelowDescendingPosition"><b>Slope Threshold Below Descending Position
+                        %</b></label>
+                <br>
+                <input type="number" value="-1" name="slopeThresholdBelowDescendingPosition"
+                    id="slopeThresholdBelowDescendingPosition">
+                <br>
+                <label for="slopeThresholdAboveDescendingPosition"><b>Slope Threshold Above Descending Position
+                        %</b></label>
+                <br>
+                <input type="number" value="3" name="slopeThresholdAboveDescendingPosition"
+                    id="slopeThresholdAboveDescendingPosition">
+                <br>
+                <label for="deltaCDA"><b>Delta CDA</b></label>
+                <br>
+                <input type="number" value="0" name="deltaCDA" id="deltaCDA">
+                <br>
+                <label for="deltaWatts"><b>Delta Watts</b></label>
+                <br>
+                <input type="number" value="-20" name="deltaWatts" id="deltaWatts">
+                <br>
+                <label for="deltaKG"><b>Delta KG</b></label>
+                <br>
+                <input type="number" value="0" name="deltaKG" id="deltaKG">
+                <br>
+            </div>
+            <center>
+                <button onclick="storeRaceInput()" id="A_SubmitBtn">Submit</button>
+            </center>
+
+        </div>
+
+        <button onclick="generateGraphs()"><i class="fa fa-line-chart fa_custom fa -2x"></i> Graphs</button>
+        <div id="mapGraph" style="width:100%;max-width:700px"></div>
+        <div id="elevationGraph" style="width:100%;max-width:700px"></div>
+        <div id="speedDistanceGraph" style="width:100%;max-width:700px"></div>
     </div>
-
-    <button onclick="generateGraphs()"><i class="fa fa-line-chart fa_custom fa -2x"></i> Graphs</button>
-    <div id="mapGraph" style="width:100%;max-width:700px"></div>
-    <div id="elevationGraph" style="width:100%;max-width:700px"></div>
-    <div id="speedDistanceGraph" style="width:100%;max-width:700px"></div>
-
 </body>
 
 </html>
