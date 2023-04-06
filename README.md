@@ -1,7 +1,7 @@
 # CYCOUT10
 
 ## Overview
-This is a `MySQL` + `Express.js` + `Vue.js` + `Node.js` web-application for AusCycling, work is still in progress.
+This is a `MySQL` + `Express.js` + `Vue.js` + `Node.js` web-application for AusCycling, completed & submitted.
 
 ## File layout
 - **client** folder = for front-end configurations in `Vue`
